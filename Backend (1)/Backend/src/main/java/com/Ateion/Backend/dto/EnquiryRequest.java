@@ -1,21 +1,27 @@
-package com.Ateion.Backend.dto;
+package com.Ateion.Backend.dto; // DTO package for API request/response objects
 
-import lombok.Data;
+import com.fasterxml.jackson.annotation.JsonAlias;
+import lombok.Data; // Lombok: auto-generates getters/setters/toString/equals/hashCode
 
-@Data
-public class EnquiryRequest {
+@Data // Single annotation replaces 50+ lines of boilerplate
+public class EnquiryRequest { // Maps directly to frontend EnquirePage formData
 
-    private String institutionName;
-    private String institutionType;
-    private String contactPerson;
-    private String designation;
+    // Institution details (required for B2B enquiries)
+    private String institutionName;  // School/college name
+    private String institutionType;  // CBSE/ICSE/State board, college, coaching
+    private String contactPerson;    // Principal/teacher name
+    private String designation;      // HOD/Principal/Coordinator
 
-    // 👇 frontend names
-    private String email;
-    private String phone;
+    // 👇 Exact frontend form field names (email, phone)
+    @JsonAlias({"email", "officialEmail"})
+    private String email;// contact@school.com
+    @JsonAlias({"phone", "phoneNumber"})
+    private String phone;            // +91-XXXXXXXXXX
 
-    private String cityState;
-    private String studentStrength;
-    private String enquiryType;
-    private String message;
+    // Additional context fields
+    private String cityState;        // "Pune, Maharashtra"
+    private String studentStrength;  // "500-1000 students"
+    private String enquiryType;      // "NCO Exam"/"AI Workshops"/"Both"
+    private String message;          // Free-text requirements
+    private String referral;         // How they found us
 }
