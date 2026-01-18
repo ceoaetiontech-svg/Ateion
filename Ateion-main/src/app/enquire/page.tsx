@@ -98,17 +98,23 @@ export default function EnquirePage() {
   const handleSubmit = async(e: React.FormEvent) => {
     e.preventDefault();
     try {
+        const payload = {
+          ...formData,
+          phone: formData.phone.replace(/\D/g, "").slice(-10),
+        };
     const response = await fetch("http://localhost:8080/api/enquiries", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(formData),
+      body: JSON.stringify(payload),
     });
 
     if (!response.ok) {
-      throw new Error("Failed to submit enquiry");
+      const err = await response.json();
+      throw new Error(err.error || "Failed to submit enquiry");
     }
+
 
     const data = await response.json();
     console.log("Saved to backend:", data);
@@ -118,7 +124,8 @@ export default function EnquirePage() {
 
   } catch (error) {
     console.error("Error submitting form:", error);
-    alert("Something went wrong ❌");
+    alert(error.message);
+
   }
 };
 console.log("Form submitted:", formData);
