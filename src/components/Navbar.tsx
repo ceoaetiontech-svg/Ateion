@@ -43,8 +43,16 @@ export function Navbar() {
         <div className="container mx-auto px-4 sm:px-6 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2 z-50 group">
             <div className="relative overflow-hidden">
-              <Image
+              {/* <Image
                 src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/project-uploads/be22b8f1-cf5b-4878-85a2-a9a1bb854c38/WhatsApp-Image-2026-01-04-at-12.13.16-AM-1767465811619.jpeg"
+                alt="ATEION Logo"
+                width={120}
+                height={48}
+                className="h-10 sm:h-12 w-auto object-contain transition-transform duration-500 group-hover:scale-105"
+                priority
+              /> */}
+              <Image
+                src="/Capture.PNG"
                 alt="ATEION Logo"
                 width={120}
                 height={48}

@@ -7,6 +7,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { schema } from './validation'
 import { z } from "zod";
+import { toast } from 'react-toastify';
 
 type FormValues = z.infer<typeof schema>;
 
@@ -15,6 +16,7 @@ const EnquireForm = () => {
     const {
         register,
         handleSubmit,
+        reset,
         formState: { errors, isSubmitting },
     } = useForm<FormValues>({
         resolver: zodResolver(schema),
@@ -29,6 +31,8 @@ const EnquireForm = () => {
     const onSubmit = (data: FormValues) => {
         console.log("Form is valid → send to backend", data);
         // axios.post(...) or fetch here
+        toast.success("Form submitted successfully");
+        reset()
     };
 
     return (
