@@ -32,31 +32,35 @@ export function Navbar() {
 
   return (
     <>
-      <motion.nav 
+      <motion.nav
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          scrolled ? "bg-background/80 backdrop-blur-xl border-b border-border/50 py-3" : "bg-transparent py-5"
+          scrolled
+            ? "bg-background/80 backdrop-blur-xl border-b border-border/50 py-3"
+            : "bg-transparent py-5"
         }`}
       >
         <div className="container mx-auto px-4 sm:px-6 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2 z-50 group">
-            <div className="relative overflow-hidden">
-              {/* <Image
-                src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/render/image/public/project-uploads/be22b8f1-cf5b-4878-85a2-a9a1bb854c38/WhatsApp-Image-2026-01-04-at-12.13.16-AM-1767465811619.jpeg"
-                alt="ATEION Logo"
-                width={120}
-                height={48}
-                className="h-10 sm:h-12 w-auto object-contain transition-transform duration-500 group-hover:scale-105"
-                priority
-              /> */}
+
+          {/* Logo */}
+          <Link
+            href="/"
+            className="flex items-center gap-2 z-50 group -ml-1"
+            // ⬅️ Shifted logo slightly to the left
+          >
+            <div
+              className="relative overflow-hidden border border-border/60 rounded-xl p-1"
+              // 🟦 Added subtle border and padding around logo
+            >
               <Image
                 src="/Capture.PNG"
                 alt="ATEION Logo"
                 width={120}
                 height={48}
-                className="h-10 sm:h-12 w-auto object-contain transition-transform duration-500 group-hover:scale-105"
+                className="h-11 sm:h-[52px] w-auto object-contain transition-transform duration-500 group-hover:scale-105"
+                // 🔍 Slightly increased logo size
                 priority
               />
             </div>
@@ -73,15 +77,22 @@ export function Navbar() {
                 }`}
               >
                 {link.name}
-                <span className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 bg-primary transition-all duration-500 rounded-full ${
-                  pathname === link.href ? "w-1/2" : "w-0 group-hover:w-1/2"
-                }`} />
+                <span
+                  className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 bg-primary transition-all duration-500 rounded-full ${
+                    pathname === link.href
+                      ? "w-1/2"
+                      : "w-0 group-hover:w-1/2"
+                  }`}
+                />
               </Link>
             ))}
           </div>
 
           <div className="flex items-center gap-4">
-            <Link href="/enquire" className="hidden sm:inline-flex enquiry-button !px-6 !py-3 !text-[10px] uppercase tracking-widest">
+            <Link
+              href="/enquire"
+              className="hidden sm:inline-flex enquiry-button !px-6 !py-3 !text-[10px] uppercase tracking-widest"
+            >
               Enquire
             </Link>
 
@@ -145,7 +156,9 @@ export function Navbar() {
                   <Link
                     href={link.href}
                     className={`text-4xl sm:text-5xl font-serif transition-all duration-500 ${
-                      pathname === link.href ? "text-primary scale-110 italic" : "text-foreground/30 hover:text-primary"
+                      pathname === link.href
+                        ? "text-primary scale-110 italic"
+                        : "text-foreground/30 hover:text-primary"
                     }`}
                   >
                     {link.name}
@@ -158,7 +171,10 @@ export function Navbar() {
                 transition={{ delay: 0.5 }}
                 className="mt-8"
               >
-                <Link href="/enquire" className="enquiry-button !px-10 !py-5 !text-xs">
+                <Link
+                  href="/enquire"
+                  className="enquiry-button !px-10 !py-5 !text-xs"
+                >
                   Submit Enquiry
                 </Link>
               </motion.div>

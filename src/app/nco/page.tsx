@@ -162,40 +162,61 @@ export default function NCOPage() {
         </div>
       </section>
 
-      {/* What NCO Evaluates Section */}
-      <section className="py-24 md:py-40">
-        <div className="container mx-auto px-4 sm:px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-20 md:mb-24"
-          >
-            <span className="text-[10px] uppercase tracking-[0.3em] text-primary/50 font-bold mb-4 block">Dimensions of assessment</span>
-            <h2 className="text-4xl sm:text-5xl md:text-6xl text-primary font-serif">What NCO Evaluates</h2>
-          </motion.div>
+     {/* What NCO Evaluates Section */}
+<section className="py-24 md:py-40">
+  <div className="container mx-auto px-4 sm:px-6">
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+      viewport={{ once: true }}
+      className="text-center mb-20 md:mb-24"
+    >
+      <span className="text-[10px] uppercase tracking-[0.3em] text-primary/50 font-bold mb-4 block">
+        Dimensions of assessment
+      </span>
+      <h2 className="text-4xl sm:text-5xl md:text-6xl text-primary font-serif">
+        What NCO Evaluates
+      </h2>
+    </motion.div>
 
-          <div className="grid sm:grid-cols-2 gap-6 md:gap-8 max-w-6xl mx-auto">
-            {evaluationDimensions.map((dimension, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="bg-card/40 border border-border/50 rounded-[2.5rem] p-8 sm:p-10 group hover:bg-background hover:border-primary/20 hover:shadow-2xl hover:shadow-primary/5 transition-all duration-500"
-              >
-                <div className="w-16 h-16 bg-background border border-border group-hover:bg-primary group-hover:border-primary rounded-2xl flex items-center justify-center mb-8 transition-all duration-500">
-                  <dimension.icon className="w-8 h-8 text-primary group-hover:text-background transition-colors" strokeWidth={1.2} />
-                </div>
-                <h3 className="text-2xl sm:text-3xl text-primary mb-4 font-serif">{dimension.title}</h3>
-                <p className="text-base sm:text-lg text-foreground/60 leading-relaxed group-hover:text-foreground/80 transition-colors">{dimension.description}</p>
-              </motion.div>
-            ))}
+    <div className="grid sm:grid-cols-2 gap-6 md:gap-8 max-w-6xl mx-auto">
+      {evaluationDimensions.map((dimension, index) => (
+        <motion.div
+          key={index}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: index * 0.1 }}
+          viewport={{ once: true }}
+
+          /* Added subtle lift-up hover + soft shadow */
+          className="
+            bg-card/40 border border-border/50 rounded-[2.5rem] p-8 sm:p-10 group
+            transition-all duration-500 ease-out
+            hover:-translate-y-2 hover:shadow-xl hover:shadow-primary/10
+            will-change-transform
+          "
+        >
+          <div className="w-16 h-16 bg-background border border-border group-hover:bg-primary group-hover:border-primary rounded-2xl flex items-center justify-center mb-8 transition-all duration-500">
+            <dimension.icon
+              className="w-8 h-8 text-primary group-hover:text-background transition-colors"
+              strokeWidth={1.2}
+            />
           </div>
-        </div>
-      </section>
+
+          <h3 className="text-2xl sm:text-3xl text-primary mb-4 font-serif">
+            {dimension.title}
+          </h3>
+
+          <p className="text-base sm:text-lg text-foreground/60 leading-relaxed group-hover:text-foreground/80 transition-colors">
+            {dimension.description}
+          </p>
+        </motion.div>
+      ))}
+    </div>
+  </div>
+</section>
+
 
       {/* Examination Structure Section */}
       <section id="structure" className="py-24 md:py-40 bg-primary text-primary-foreground relative overflow-hidden">
@@ -252,88 +273,120 @@ export default function NCOPage() {
         </div>
       </section>
 
-      {/* Eligibility Section */}
-      <section className="py-24 md:py-40 bg-background">
-        <div className="container mx-auto px-4 sm:px-6">
-          <div className="max-w-5xl mx-auto">
-            <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
-              <div className="max-w-2xl">
-                <span className="text-[10px] uppercase tracking-[0.3em] text-primary/50 font-bold mb-4 block">Who can participate</span>
-                <h2 className="text-4xl sm:text-5xl md:text-6xl text-primary mb-6 font-serif">Eligibility</h2>
-                <p className="text-lg text-foreground/60 leading-relaxed font-light">
-                  NCO is open to students enrolled in recognized educational institutions across India. The examination is divided into distinct cohorts.
+     {/* Eligibility Section */}
+<section className="py-24 md:py-40 bg-background">
+  <div className="container mx-auto px-4 sm:px-6">
+    <div className="max-w-5xl mx-auto">
+      <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
+        <div className="max-w-2xl">
+          <span className="text-[10px] uppercase tracking-[0.3em] text-primary/50 font-bold mb-4 block">
+            Who can participate
+          </span>
+          <h2 className="text-4xl sm:text-5xl md:text-6xl text-primary mb-6 font-serif">
+            Eligibility
+          </h2>
+          <p className="text-lg text-foreground/60 leading-relaxed font-light">
+            NCO is open to students enrolled in recognized educational institutions across India. The examination is divided into distinct cohorts.
+          </p>
+        </div>
+      </div>
+
+      <div className="grid sm:grid-cols-2 gap-6">
+        {eligibilityCategories.map((category, index) => (
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: index * 0.1 }}
+            viewport={{ once: true }}
+
+            /* Added gentle lift-up hover + soft shadow */
+            className="
+              bg-card/40 border border-border/50 rounded-[2rem]
+              p-8 sm:p-10
+              transition-all duration-500 ease-out
+              hover:-translate-y-2 hover:shadow-lg hover:shadow-black/5
+              will-change-transform
+            "
+          >
+            <div className="text-2xl sm:text-3xl text-primary mb-4 font-serif">
+              {category.grade}
+            </div>
+            <p className="text-base text-foreground/60 leading-relaxed">
+              {category.description}
+            </p>
+          </motion.div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+
+    {/* Scoring Methodology Section */}
+<section className="py-24 md:py-40 bg-card/20 border-y border-border/30">
+  <div className="container mx-auto px-4 sm:px-6">
+    <div className="max-w-5xl mx-auto">
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+        className="mb-20"
+      >
+        <h2 className="text-4xl sm:text-5xl md:text-6xl text-primary mb-8 font-serif text-center">
+          Scoring Methodology
+        </h2>
+        <p className="text-lg sm:text-xl text-foreground/60 text-center max-w-3xl mx-auto leading-relaxed font-light">
+          NCO employs a standardized scoring system designed to provide meaningful comparative benchmarks while accounting for question difficulty.
+        </p>
+      </motion.div>
+
+      <div className="grid sm:grid-cols-2 gap-6 mb-12">
+        {scoringComponents.map((component, index) => (
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: index * 0.1 }}
+            viewport={{ once: true }}
+
+            /* Added gentle lift-up hover while keeping existing shadow */
+            className="
+              bg-background border border-border/50 rounded-3xl p-8
+              transition-all duration-500 ease-out
+              hover:-translate-y-2 hover:shadow-lg
+              will-change-transform
+            "
+          >
+            <div className="flex items-start gap-6">
+              <div className="w-10 h-10 bg-primary text-background rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0">
+                {index + 1}
+              </div>
+              <div>
+                <h4 className="text-xl font-serif text-primary mb-2">
+                  {component.title}
+                </h4>
+                <p className="text-base text-foreground/60 leading-relaxed">
+                  {component.description}
                 </p>
               </div>
             </div>
+          </motion.div>
+        ))}
+      </div>
 
-            <div className="grid sm:grid-cols-2 gap-6">
-              {eligibilityCategories.map((category, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="bg-card/40 border border-border/50 rounded-[2rem] p-8 sm:p-10 hover:bg-accent/20 transition-all duration-500"
-                >
-                  <div className="text-2xl sm:text-3xl text-primary mb-4 font-serif">{category.grade}</div>
-                  <p className="text-base text-foreground/60 leading-relaxed">{category.description}</p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Scoring Methodology Section */}
-      <section className="py-24 md:py-40 bg-card/20 border-y border-border/30">
-        <div className="container mx-auto px-4 sm:px-6">
-          <div className="max-w-5xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-              className="mb-20"
-            >
-              <h2 className="text-4xl sm:text-5xl md:text-6xl text-primary mb-8 font-serif text-center">Scoring Methodology</h2>
-              <p className="text-lg sm:text-xl text-foreground/60 text-center max-w-3xl mx-auto leading-relaxed font-light">
-                NCO employs a standardized scoring system designed to provide meaningful comparative benchmarks while accounting for question difficulty.
-              </p>
-            </motion.div>
-
-            <div className="grid sm:grid-cols-2 gap-6 mb-12">
-              {scoringComponents.map((component, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  className="bg-background border border-border/50 rounded-3xl p-8 hover:shadow-lg transition-all"
-                >
-                  <div className="flex items-start gap-6">
-                    <div className="w-10 h-10 bg-primary text-background rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0">
-                      {index + 1}
-                    </div>
-                    <div>
-                      <h4 className="text-xl font-serif text-primary mb-2">{component.title}</h4>
-                      <p className="text-base text-foreground/60 leading-relaxed">{component.description}</p>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-
-            <div className="bg-primary/5 border border-primary/10 rounded-3xl p-8 text-center backdrop-blur-sm">
-              <p className="text-base text-primary/80 font-sans tracking-wide">
-                <span className="font-bold uppercase text-[10px] bg-primary text-background px-2 py-0.5 rounded mr-2">Note</span>
-                <strong>No negative marking</strong> is applied. Every question is an opportunity to demonstrate capability.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+      <div className="bg-primary/5 border border-primary/10 rounded-3xl p-8 text-center backdrop-blur-sm">
+        <p className="text-base text-primary/80 font-sans tracking-wide">
+          <span className="font-bold uppercase text-[10px] bg-primary text-background px-2 py-0.5 rounded mr-2">
+            Note
+          </span>
+          <strong>No negative marking</strong> is applied. Every question is an opportunity to demonstrate capability.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* Recognition & Awards Section */}
       <section className="py-24 md:py-40">
@@ -385,71 +438,103 @@ export default function NCOPage() {
 
       {/* Registration Process Section */}
       <section className="py-24 md:py-40 bg-card/30 border-y border-border/30">
-        <div className="container mx-auto px-4 sm:px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-20"
-          >
-            <h2 className="text-4xl sm:text-5xl md:text-6xl text-primary font-serif">Registration Process</h2>
-          </motion.div>
+  <div className="container mx-auto px-4 sm:px-6">
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+      viewport={{ once: true }}
+      className="text-center mb-20"
+    >
+      <h2 className="text-4xl sm:text-5xl md:text-6xl text-primary font-serif">
+        Registration Process
+      </h2>
+    </motion.div>
 
-          <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-              className="bg-primary rounded-[2.5rem] p-10 md:p-14 text-primary-foreground relative overflow-hidden group shadow-2xl"
-            >
-              <div className="absolute top-0 right-0 w-32 h-32 bg-accent opacity-10 blur-3xl group-hover:opacity-20 transition-opacity" />
-              <div className="flex items-center gap-4 mb-10">
-                <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center">
-                  <Building2 className="w-6 h-6 text-accent" />
-                </div>
-                <h3 className="text-2xl sm:text-3xl font-serif">Institutional</h3>
-              </div>
-              <div className="space-y-6">
-                {registrationSteps.institutional.map((step, index) => (
-                  <div key={index} className="flex items-start gap-6 group/item">
-                    <div className="w-8 h-8 bg-white/10 border border-white/5 rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0 group-hover/item:bg-white/20 transition-colors">
-                      {index + 1}
-                    </div>
-                    <p className="text-primary-foreground/80 pt-1 text-lg font-light leading-tight">{step}</p>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
+    <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
 
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-              className="bg-background border border-border rounded-[2.5rem] p-10 md:p-14 shadow-sm"
-            >
-              <div className="flex items-center gap-4 mb-10">
-                <div className="w-12 h-12 bg-card rounded-xl flex items-center justify-center">
-                  <User className="w-6 h-6 text-primary" />
-                </div>
-                <h3 className="text-2xl sm:text-3xl text-primary font-serif">Individual</h3>
-              </div>
-              <div className="space-y-6">
-                {registrationSteps.individual.map((step, index) => (
-                  <div key={index} className="flex items-start gap-6 group/item">
-                    <div className="w-8 h-8 bg-card border border-border rounded-full flex items-center justify-center text-sm font-bold text-primary flex-shrink-0 group-hover/item:bg-accent/20 transition-colors">
-                      {index + 1}
-                    </div>
-                    <p className="text-foreground/70 pt-1 text-lg font-light leading-tight">{step}</p>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
+      {/* Institutional Box */}
+      <motion.div
+        initial={{ opacity: 0, x: -30 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+
+        /* Removed dark background, matched with Individual box + added lift & shadow */
+        className="
+          bg-background border border-border rounded-[2.5rem]
+          p-10 md:p-14 relative overflow-hidden
+          transition-all duration-500 ease-out
+          hover:-translate-y-2 hover:shadow-xl hover:shadow-black/5
+          will-change-transform
+        "
+      >
+        <div className="flex items-center gap-4 mb-10">
+          <div className="w-12 h-12 bg-card rounded-xl flex items-center justify-center">
+            <Building2 className="w-6 h-6 text-primary" />
           </div>
+          <h3 className="text-2xl sm:text-3xl text-primary font-serif">
+            Institutional
+          </h3>
         </div>
-      </section>
+
+        <div className="space-y-6">
+          {registrationSteps.institutional.map((step, index) => (
+            <div key={index} className="flex items-start gap-6 group/item">
+              <div className="w-8 h-8 bg-card border border-border rounded-full flex items-center justify-center text-sm font-bold text-primary flex-shrink-0 group-hover/item:bg-accent/20 transition-colors">
+                {index + 1}
+              </div>
+              <p className="text-foreground/70 pt-1 text-lg font-light leading-tight">
+                {step}
+              </p>
+            </div>
+          ))}
+        </div>
+      </motion.div>
+
+      {/* Individual Box */}
+      <motion.div
+        initial={{ opacity: 0, x: 30 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+
+        /* Added same lift-up hover & shadow for consistency */
+        className="
+          bg-background border border-border rounded-[2.5rem]
+          p-10 md:p-14
+          transition-all duration-500 ease-out
+          hover:-translate-y-2 hover:shadow-xl hover:shadow-black/5
+          will-change-transform
+        "
+      >
+        <div className="flex items-center gap-4 mb-10">
+          <div className="w-12 h-12 bg-card rounded-xl flex items-center justify-center">
+            <User className="w-6 h-6 text-primary" />
+          </div>
+          <h3 className="text-2xl sm:text-3xl text-primary font-serif">
+            Individual
+          </h3>
+        </div>
+
+        <div className="space-y-6">
+          {registrationSteps.individual.map((step, index) => (
+            <div key={index} className="flex items-start gap-6 group/item">
+              <div className="w-8 h-8 bg-card border border-border rounded-full flex items-center justify-center text-sm font-bold text-primary flex-shrink-0 group-hover/item:bg-accent/20 transition-colors">
+                {index + 1}
+              </div>
+              <p className="text-foreground/70 pt-1 text-lg font-light leading-tight">
+                {step}
+              </p>
+            </div>
+          ))}
+        </div>
+      </motion.div>
+
+    </div>
+  </div>
+</section>
+
 
       {/* Important Dates Section */}
       <section className="py-24 md:py-40">
