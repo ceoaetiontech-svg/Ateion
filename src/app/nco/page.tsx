@@ -114,14 +114,19 @@ export default function NCOPage() {
             <p className="text-lg sm:text-xl md:text-2xl text-foreground/80 max-w-2xl leading-relaxed mb-10 font-sans font-light">
               A structured national examination framework evaluating cognitive reasoning and creative application in the next generation of Indian leaders.
             </p>
-            <div className="flex flex-wrap gap-4">
-              <Link href="/enquire" className="enquiry-button">
-                Register Institution
-              </Link>
-              <Link href="#structure" className="px-8 py-4 rounded-full border border-border text-primary font-sans font-medium hover:bg-secondary transition-all duration-300">
-                Learn More
-              </Link>
-            </div>
+           <div className="flex flex-wrap gap-4">
+  <Link href="/enquire" className="enquiry-button">
+    Register Institution
+  </Link>
+
+  <Link
+    href="#structure"
+    className="px-8 py-4 rounded-full bg-black text-white font-sans font-medium border border-black hover:bg-neutral-800 transition-all duration-300"
+  >
+    Learn More
+  </Link>
+</div>
+
           </motion.div>
         </div>
       </section>

@@ -48,11 +48,9 @@ export function Navbar() {
           <Link
             href="/"
             className="flex items-center gap-2 z-50 group -ml-1"
-            // ⬅️ Shifted logo slightly to the left
           >
             <div
-              className="relative overflow-hidden border border-border/60 rounded-xl p-1"
-              // 🟦 Added subtle border and padding around logo
+              className="relative overflow-hidden border-2 border-border rounded-xl p-1"
             >
               <Image
                 src="/Capture.PNG"
@@ -60,7 +58,6 @@ export function Navbar() {
                 width={120}
                 height={48}
                 className="h-11 sm:h-[52px] w-auto object-contain transition-transform duration-500 group-hover:scale-105"
-                // 🔍 Slightly increased logo size
                 priority
               />
             </div>
