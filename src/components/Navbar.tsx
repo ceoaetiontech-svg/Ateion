@@ -36,28 +36,22 @@ export function Navbar() {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          scrolled
-            ? "bg-background/80 backdrop-blur-xl border-b border-border/50 py-3"
-            : "bg-transparent py-5"
-        }`}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled
+          ? "bg-background/80 backdrop-blur-xl border-b border-border/50 py-3"
+          : "bg-transparent py-5"
+          }`}
       >
         <div className="container mx-auto px-4 sm:px-6 flex items-center justify-between">
 
           {/* Logo */}
-          <Link
-            href="/"
-            className="flex items-center gap-2 z-50 group -ml-1"
-          >
-            <div
-              className="relative overflow-hidden border-2 border-border rounded-xl p-1"
-            >
+          <Link href="/" className="flex items-center gap-2 z-50 group -ml-1">
+            <div className="relative overflow-hidden p-1 border border-gray-900">
               <Image
                 src="/Capture.PNG"
                 alt="ATEION Logo"
-                width={120}
-                height={48}
-                className="h-11 sm:h-[52px] w-auto object-contain transition-transform duration-500 group-hover:scale-105"
+                width={90}
+                height={24}
+                className="h-8 sm:h-9 w-auto object-contain scale-110 transition-transform duration-300 group-hover:scale-115"
                 priority
               />
             </div>
@@ -69,17 +63,15 @@ export function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`text-[10px] font-sans font-bold uppercase tracking-[0.3em] transition-all duration-300 hover:text-primary relative group py-2 ${
-                  pathname === link.href ? "text-primary" : "text-foreground/40"
-                }`}
+                className={`text-[10px] font-sans font-bold uppercase tracking-[0.3em] transition-all duration-300 hover:text-primary relative group py-2 ${pathname === link.href ? "text-primary" : "text-foreground/40"
+                  }`}
               >
                 {link.name}
                 <span
-                  className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 bg-primary transition-all duration-500 rounded-full ${
-                    pathname === link.href
-                      ? "w-1/2"
-                      : "w-0 group-hover:w-1/2"
-                  }`}
+                  className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 bg-primary transition-all duration-500 rounded-full ${pathname === link.href
+                    ? "w-1/2"
+                    : "w-0 group-hover:w-1/2"
+                    }`}
                 />
               </Link>
             ))}
@@ -152,11 +144,10 @@ export function Navbar() {
                 >
                   <Link
                     href={link.href}
-                    className={`text-4xl sm:text-5xl font-serif transition-all duration-500 ${
-                      pathname === link.href
-                        ? "text-primary scale-110 italic"
-                        : "text-foreground/30 hover:text-primary"
-                    }`}
+                    className={`text-4xl sm:text-5xl font-serif transition-all duration-500 ${pathname === link.href
+                      ? "text-primary scale-110 italic"
+                      : "text-foreground/30 hover:text-primary"
+                      }`}
                   >
                     {link.name}
                   </Link>
