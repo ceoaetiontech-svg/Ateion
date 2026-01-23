@@ -9,9 +9,15 @@ import { schema } from './validation'
 import { z } from "zod";
 import { toast } from 'react-toastify';
 
+import { tablesDB, DATABASE_ID, TABLE_ID } from '@/lib/appwrite';
+import { ID } from 'appwrite';
+
 type FormValues = z.infer<typeof schema>;
 
 const EnquireForm = () => {
+
+    const [isLoading, setIsLoading] = useState(false);
+
 
     const {
         register,
@@ -28,11 +34,39 @@ const EnquireForm = () => {
         },
     });
 
-    const onSubmit = (data: FormValues) => {
-        console.log("Form is valid → send to backend", data);
-        // axios.post(...) or fetch here
-        toast.success("Form submitted successfully");
-        reset()
+    const onSubmit = async (data: FormValues) => {
+        setIsLoading(true);
+        try {
+
+            toast.loading("Submitting enquiry...", {
+                toastId: "form-submit"
+            });
+
+            await tablesDB.createRow(
+                DATABASE_ID,
+                TABLE_ID,
+                ID.unique(),
+                data
+            );
+
+            toast.update("form-submit", {
+                render: "✅ Enquiry submitted successfully!",
+                type: "success",
+                isLoading: false,
+                autoClose: 4000
+            });
+            reset();
+        } catch (error) {
+            toast.update("form-submit", {
+                render: "❌ Submission failed. Please try again.",
+                type: "error",
+                isLoading: false,
+                autoClose: 5000
+            });
+            console.error("Appwrite error:", error);
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     return (
@@ -46,7 +80,7 @@ const EnquireForm = () => {
                         className={inputClasses}
                         placeholder="Full legal name of the institution"
                     />
-                    {errors.institutionName && <p style={{color: "red"}}>{errors.institutionName.message}</p>}
+                    {errors.institutionName && <p style={{ color: "red" }}>{errors.institutionName.message}</p>}
                 </div>
 
                 {/* Institution Type */}
@@ -60,7 +94,7 @@ const EnquireForm = () => {
                             <option key={type} value={type}>{type}</option>
                         ))}
                     </select>
-                    {errors.institutionType && <p style={{color: "red"}}>{errors.institutionType.message}</p>}
+                    {errors.institutionType && <p style={{ color: "red" }}>{errors.institutionType.message}</p>}
                 </div>
 
                 {/* Contact Person */}
@@ -71,7 +105,7 @@ const EnquireForm = () => {
                         placeholder="Full name"
                         className={inputClasses}
                     />
-                    {errors.contactPerson && <p style={{color: "red"}}>{errors.contactPerson.message}</p>}
+                    {errors.contactPerson && <p style={{ color: "red" }}>{errors.contactPerson.message}</p>}
                 </div>
 
                 {/* Designation */}
@@ -82,7 +116,7 @@ const EnquireForm = () => {
                         placeholder="e.g., Principal, Dean"
                         className={inputClasses}
                     />
-                    {errors.designation && <p style={{color: "red"}}>{errors.designation.message}</p>}
+                    {errors.designation && <p style={{ color: "red" }}>{errors.designation.message}</p>}
                 </div>
 
                 {/* Email */}
@@ -93,7 +127,7 @@ const EnquireForm = () => {
                         placeholder="institutional.email@domain.edu"
                         className={inputClasses}
                     />
-                    {errors.email && <p style={{color: "red"}}>{errors.email.message}</p>}
+                    {errors.email && <p style={{ color: "red" }}>{errors.email.message}</p>}
                 </div>
 
                 {/* Phone */}
@@ -104,7 +138,7 @@ const EnquireForm = () => {
                         placeholder="XXXXX XXXXX"
                         className={inputClasses}
                     />
-                    {errors.phone && <p style={{color: "red"}}>{errors.phone.message}</p>}
+                    {errors.phone && <p style={{ color: "red" }}>{errors.phone.message}</p>}
                 </div>
 
                 {/* City/State */}
@@ -115,7 +149,7 @@ const EnquireForm = () => {
                         placeholder="City, State"
                         className={inputClasses}
                     />
-                    {errors.cityState && <p style={{color: "red"}}>{errors.cityState.message}</p>}
+                    {errors.cityState && <p style={{ color: "red" }}>{errors.cityState.message}</p>}
                 </div>
 
                 {/* Student Strength */}
@@ -129,7 +163,7 @@ const EnquireForm = () => {
                             <option key={range} value={range}>{range}</option>
                         ))}
                     </select>
-                    {errors.studentStrength && <p style={{color: "red"}}>{errors.studentStrength.message}</p>}
+                    {errors.studentStrength && <p style={{ color: "red" }}>{errors.studentStrength.message}</p>}
                 </div>
 
                 {/* Nature of Enquiry */}
@@ -143,7 +177,7 @@ const EnquireForm = () => {
                             <option key={type} value={type}>{type}</option>
                         ))}
                     </select>
-                    {errors.enquiryType && <p style={{color: "red"}}>{errors.enquiryType.message}</p>}
+                    {errors.enquiryType && <p style={{ color: "red" }}>{errors.enquiryType.message}</p>}
                 </div>
 
                 {/* Message */}
@@ -154,7 +188,7 @@ const EnquireForm = () => {
                         placeholder="Please describe your enquiry in detail..."
                         className={`${inputClasses} min-h-[120px] resize-none`}
                     />
-                    {errors.message && <p style={{color: "red"}}>{errors.message.message}</p>}
+                    {errors.message && <p style={{ color: "red" }}>{errors.message.message}</p>}
                 </div>
             </div>
 
@@ -162,14 +196,23 @@ const EnquireForm = () => {
                 <p className="text-xs text-foreground/40 font-light max-w-xs text-center sm:text-left">
                     By submitting this form, you agree to our privacy policy and terms regarding institutional affiliation.
                 </p>
+
+                {/* --------------------
+                    SUBMIT BUTTON
+                    -------------------- */}
                 <motion.button
-                    disabled={isSubmitting}
+                    disabled={isLoading || isSubmitting}
                     type="submit"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="enquiry-button px-12 py-5 flex items-center gap-3 group"
+                    whileHover={isLoading ? {} : { scale: 1.05 }}
+                    whileTap={isLoading ? {} : { scale: 0.95 }}
+                    className={`enquiry-button px-12 py-5 flex items-center gap-3 group ${isLoading ? 'opacity-50 cursor-not-allowed' : ''
+                        }`}
                 >
-                    Send Enquiry <Send size={16} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                    {isLoading ? (
+                        <>Sending... <Send size={16} className="animate-spin" /></>  // ← Loading state
+                    ) : (
+                        <>Send Enquiry <Send size={16} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" /></>
+                    )}
                 </motion.button>
             </div>
         </form>
