@@ -2,16 +2,18 @@ version: '3.9'
 
 services:
   db:
-    image: postgres:17
-    container_name: postgres-db
+    image: postgres:17-alpine
+    container_name: ateion_db
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 1234
-      POSTGRES_DB: smartfinance
+      POSTGRES_DB: ateion_db
     ports:
       - "5432:5432"
     volumes:
       - postgres-data:/var/lib/postgresql/data
+    networks:
+      - app-network
 
   app:
     build: .
@@ -21,9 +23,16 @@ services:
     depends_on:
       - db
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/smartfinance
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/ateion_db
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: 1234
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    networks:
+      - app-network
 
 volumes:
   postgres-data:
+
+networks:
+  app-network:
+    driver: bridge
