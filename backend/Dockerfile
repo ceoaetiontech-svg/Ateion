@@ -10,7 +10,6 @@ COPY src ./src
 # Build the application
 RUN mvn clean package -DskipTests
 
-
 # ---------- RUN STAGE ----------
 FROM eclipse-temurin:17-jdk-alpine
 
@@ -23,3 +22,4 @@ EXPOSE 8080
 
 # Run Spring Boot app
 ENTRYPOINT ["java", "-jar", "app.jar"]
+
