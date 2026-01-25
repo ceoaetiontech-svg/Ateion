@@ -139,41 +139,81 @@ export default function WorkshopsPage() {
   
   return (
     <div ref={containerRef} className="flex flex-col bg-background selection:bg-primary selection:text-primary-foreground">
-      {/* Hero Section */}
-      <section className="min-h-[70vh] flex items-center relative overflow-hidden bg-background">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,var(--color-accent),transparent_40%)] opacity-20" />
-        <div className="container mx-auto px-4 sm:px-6 py-24 relative z-10">
-          <motion.div
-            initial="initial"
-            animate="animate"
-            variants={staggerContainer}
-            className="max-w-4xl"
-          >
-            <motion.div
-              variants={fadeInUp}
-              className="flex items-center gap-3 mb-6"
-            >
-              <div className="h-px w-8 bg-primary/30" />
-              <span className="text-[10px] sm:text-xs font-sans font-bold uppercase tracking-[0.4em] text-primary/60">
-                CAPABILITY DEVELOPMENT
-              </span>
-            </motion.div>
-            <motion.h1 
-              variants={fadeInUp}
-              className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-primary font-serif leading-[0.95] mb-8"
-            >
-              AI Workshops <br />
-              <span className="italic opacity-90">for Students</span>
-            </motion.h1>
-            <motion.p 
-              variants={fadeInUp}
-              className="text-xl sm:text-2xl md:text-3xl text-foreground/70 font-sans font-light leading-relaxed max-w-2xl italic"
-            >
-              &ldquo;Because your potential deserves better tools than chaos and last-minute panic.&rdquo;
-            </motion.p>
-          </motion.div>
-        </div>
-      </section>
+      
+{/* Hero Section */}
+<section
+  className="
+    relative overflow-hidden
+    text-center
+    pt-[160px] pb-[120px]
+    bg-gradient-to-br
+    from-[#6366F1]
+    to-[#4F46E5]
+  "
+>
+  {/* Subtle radial accent */}
+  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.25),transparent_45%)]" />
+
+  <div className="container mx-auto px-4 sm:px-6 relative z-10 max-w-[900px]">
+    <motion.div
+      initial="initial"
+      animate="animate"
+      variants={staggerContainer}
+    >
+      {/* Small Label */}
+      <motion.div
+        variants={fadeInUp}
+        className="mb-4"
+      >
+        <span
+          className="
+            text-[17px]
+            font-semibold
+            tracking-[3px]
+            uppercase
+            text-white/80
+          "
+        >
+          CAPABILITY DEVELOPMENT
+        </span>
+      </motion.div>
+
+      {/* Main Heading */}
+      <motion.h1
+        variants={fadeInUp}
+        className="
+          text-[44px] md:text-[68px]
+          font-extrabold
+          tracking-[-2px]
+          leading-[1.1]
+          text-white
+          mb-6
+        "
+      >
+        AI Workshops for Students
+      </motion.h1>
+
+      {/* Tagline */}
+      <motion.p
+        variants={fadeInUp}
+        className="
+          text-[30px]
+          font-medium
+          italic
+          text-white
+          leading-[1.4]
+          max-w-[900px]
+          mx-auto
+          mb-12
+        "
+      >
+        &ldquo;Because your potential deserves better tools than chaos and last-minute panic.&rdquo;
+      </motion.p>
+    </motion.div>
+  </div>
+</section>
+
+
 
       {/* About Section */}
       <section className="py-24 md:py-32 bg-card/30 border-y border-border/50">
@@ -211,124 +251,164 @@ export default function WorkshopsPage() {
         </div>
       </section>
 
-      {/* Workshops List */}
-      <section className="py-24 md:py-40">
-        <div className="container mx-auto px-4 sm:px-6">
-          <div className="space-y-32 md:space-y-48">
-            {workshops.map((workshop, index) => (
-              <motion.div
-                key={workshop.id}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-                viewport={{ once: true, margin: "-100px" }}
-                className="group"
-              >
-                <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 items-start">
-                  {/* Workshop Header & Intro */}
-                  <div className="lg:col-span-5 space-y-8">
-                    <div className="flex items-center gap-4">
-                      <span className="text-5xl md:text-6xl font-serif italic text-primary/10 select-none">{workshop.id}</span>
-                      <div className="h-px w-12 bg-border" />
-                      <div className={`p-4 rounded-2xl bg-card border border-border group-hover:bg-primary transition-all duration-500`}>
-                        <workshop.icon className="w-8 h-8 text-primary group-hover:text-background transition-colors" strokeWidth={1.2} />
-                      </div>
-                    </div>
-                    <h3 className="text-3xl sm:text-4xl md:text-5xl text-primary font-serif leading-tight">
-                      {workshop.title}
-                    </h3>
-                    <p className="text-lg text-foreground/60 leading-relaxed font-light">
-                      {workshop.intro}
-                    </p>
-                    <div className="flex items-center gap-3 text-[10px] font-sans font-bold uppercase tracking-[0.2em] text-primary/40 bg-secondary px-4 py-2 rounded-full w-fit">
-                      <Clock className="w-3 h-3" />
-                      Duration: {workshop.duration}
-                    </div>
-                    
-                    {/* The Shift */}
-                    <div className="bg-card/50 p-8 rounded-[2rem] border border-border/50 relative overflow-hidden group-hover:bg-background group-hover:shadow-2xl group-hover:shadow-primary/5 transition-all duration-500">
-                      <div className="absolute top-0 right-0 p-6 opacity-[0.05] group-hover:opacity-10 transition-opacity">
-                        <Sparkles className="w-16 h-16 text-primary" />
-                      </div>
-                      <div className="text-[10px] font-sans font-bold uppercase tracking-[0.3em] text-primary/40 mb-4">The Resulting Shift</div>
-                      <p className="text-lg text-primary font-serif italic leading-relaxed">
-                        &ldquo;{workshop.shift}&rdquo;
-                      </p>
-                    </div>
-                  </div>
+{/* Workshops List */}
+<section className="w-full">
+  {workshops.map((workshop, index) => {
+    const isGray = index % 2 === 1;
 
-                  {/* Workshop Details */}
-                  <div className="lg:col-span-7 grid sm:grid-cols-2 gap-10 md:gap-16 lg:pt-20">
-                    <div className="space-y-8">
-                      <h4 className="text-[10px] font-sans font-bold uppercase tracking-[0.3em] text-primary/40 flex items-center gap-3">
-                        <div className="w-1.5 h-1.5 rounded-full bg-primary" /> What You’ll Learn
-                      </h4>
-                      <ul className="space-y-6">
-                        {workshop.learn.map((item, i) => (
-                          <li key={i} className="flex gap-4 text-base text-foreground/70 leading-relaxed font-light group/li">
-                            <CheckCircle2 className="w-5 h-5 text-primary/30 group-hover/li:text-primary transition-colors flex-shrink-0 mt-0.5" strokeWidth={1.5} />
-                            {item}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                    <div className="space-y-8">
-                      <h4 className="text-[10px] font-sans font-bold uppercase tracking-[0.3em] text-primary/40 flex items-center gap-3">
-                        <div className="w-1.5 h-1.5 rounded-full bg-primary" /> Key Highlights
-                      </h4>
-                      <ul className="space-y-6">
-                        {workshop.highlights.map((item, i) => (
-                          <li key={i} className="flex gap-4 text-base text-foreground/70 leading-relaxed font-light group/li">
-                            <div className="w-1.5 h-1.5 rounded-full bg-primary/20 group-hover/li:bg-primary transition-colors flex-shrink-0 mt-2.5" />
-                            {item}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
+    const accents = [
+      {
+        badgeBg: "#EFF6FF",
+        accent: "#3B82F6",
+        shiftBg: "#EFF6FF",
+        shiftText: "#1E40AF",
+      },
+      {
+        badgeBg: "#F3E8FF",
+        accent: "#8B5CF6",
+        shiftBg: "#F3E8FF",
+        shiftText: "#5B21B6",
+      },
+      {
+        badgeBg: "#EEF2FF",
+        accent: "#6366F1",
+        shiftBg: "#EEF2FF",
+        shiftText: "#3730A3",
+      },
+      {
+        badgeBg: "#ECFDF5",
+        accent: "#10B981",
+        shiftBg: "#ECFDF5",
+        shiftText: "#065F46",
+      },
+      {
+        badgeBg: "#FFFBEB",
+        accent: "#F59E0B",
+        shiftBg: "#FFFBEB",
+        shiftText: "#92400E",
+      },
+    ][index];
+
+    return (
+      <motion.section
+        key={workshop.id}
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7 }}
+        viewport={{ once: true }}
+        className={`${isGray ? "bg-[#F8FAFC]" : "bg-white"} py-[100px] px-6 lg:px-16`}
+      >
+        <div className="max-w-[1400px] mx-auto">
+          {/* MAIN GRID */}
+          <div className="grid grid-cols-1 lg:grid-cols-[140px_1fr_1fr] gap-16 items-start">
+
+            {/* WORKSHOP NUMBER */}
+            <div className="relative hidden lg:block">
+              <span
+                className="absolute top-[-40px] left-0 text-[120px] font-extrabold opacity-[0.15] leading-none"
+                style={{ color: accents.accent }}
+              >
+                {workshop.id}
+              </span>
+            </div>
+
+            {/* LEFT CONTENT */}
+            <div className="relative z-10 max-w-[720px] space-y-6">
+              <h3 className="text-[36px] font-bold text-[#0F172A] leading-[1.2]">
+                {workshop.title}
+              </h3>
+
+              <p className="text-[18px] text-[#475569] leading-relaxed">
+                {workshop.intro}
+              </p>
+
+              {/* DURATION BADGE */}
+              <div
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-[14px] font-semibold"
+                style={{
+                  background: accents.badgeBg,
+                  color: accents.accent,
+                }}
+              >
+                <Clock size={16} />
+                Duration: {workshop.duration}
+              </div>
+
+              {/* SHIFT + QUOTE */}
+              <div
+                className="mt-8 p-6 pl-8 rounded-lg border-l-4"
+                style={{
+                  background: accents.shiftBg,
+                  borderLeftColor: accents.accent,
+                }}
+              >
+                <p
+                  className="text-[20px] italic leading-[1.5]"
+                  style={{ color: accents.shiftText }}
+                >
+                  “{workshop.shift}”
+                </p>
+              </div>
+            </div>
+
+            {/* RIGHT CONTENT */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {/* WHAT YOU’LL LEARN */}
+              <div
+                className={`border-2 rounded-2xl p-8 ${
+                  isGray ? "bg-white" : "bg-[#F8FAFC]"
+                }`}
+              >
+                <h4 className="text-[20px] font-bold text-[#0F172A] mb-6">
+                  What You’ll Learn
+                </h4>
+                <ul className="space-y-4">
+                  {workshop.learn.map((item, i) => (
+                    <li key={i} className="flex gap-3 items-start">
+                      <CheckCircle2
+                        size={20}
+                        className="text-[#10B981] flex-shrink-0 mt-1"
+                      />
+                      <span className="text-[16px] text-[#64748B] leading-relaxed">
+                        {item}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* KEY HIGHLIGHTS */}
+              <div
+                className={`border-2 rounded-2xl p-8 ${
+                  isGray ? "bg-white" : "bg-[#F8FAFC]"
+                }`}
+              >
+                <h4 className="text-[20px] font-bold text-[#0F172A] mb-6">
+                  Key Highlights
+                </h4>
+                <ul className="space-y-4">
+                  {workshop.highlights.map((item, i) => (
+                    <li key={i} className="flex gap-3 items-start">
+                      <Zap
+                        size={20}
+                        className="text-[#F59E0B] flex-shrink-0 mt-1"
+                      />
+                      <span className="text-[16px] text-[#64748B] leading-relaxed">
+                        {item}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
           </div>
         </div>
-      </section>
+      </motion.section>
+    );
+  })}
+</section>
 
-      {/* Delivery & Format Section */}
-      <section className="py-24 md:py-40 bg-primary text-primary-foreground relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,var(--color-accent),transparent_80%)] opacity-10" />
-        <div className="container mx-auto px-4 sm:px-6 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="max-w-4xl mx-auto text-center mb-20"
-          >
-            <span className="text-[10px] uppercase tracking-[0.4em] font-bold text-primary-foreground/40 mb-4 block">Execution</span>
-            <h2 className="text-4xl sm:text-5xl md:text-6xl font-serif">Delivery & Format</h2>
-          </motion.div>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-6xl mx-auto">
-            {[
-              "Live, interactive sessions",
-              "Practical, step-by-step guidance",
-              "Focus on real student workflows",
-              "No prior technical background required"
-            ].map((item, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.98 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="bg-white/5 backdrop-blur-md border border-white/10 p-10 rounded-[2rem] text-center group hover:bg-white/10 transition-all duration-500"
-              >
-                <p className="text-lg font-serif italic group-hover:scale-105 transition-transform">{item}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* CTA Section */}
       <section className="py-24 md:py-48 relative overflow-hidden">
