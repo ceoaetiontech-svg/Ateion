@@ -6,7 +6,6 @@ import VisualEditsMessenger from "../visual-edits/VisualEditsMessenger";
 import ErrorReporter from "@/components/ErrorReporter";
 import Script from "next/script";
 import { Instrument_Sans, Instrument_Serif } from "next/font/google";
-import ToastProvider from "@/components/ToastProvider";
 
 const instrumentSans = Instrument_Sans({
   subsets: ["latin"],
@@ -57,7 +56,6 @@ export default function RootLayout({
         </main>
         <Footer />
         <VisualEditsMessenger />
-        <ToastProvider />
       </body>
     </html>
   );

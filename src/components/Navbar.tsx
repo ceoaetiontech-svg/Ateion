@@ -16,15 +16,6 @@ const navLinks = [
 export function Navbar() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   useEffect(() => {
     setIsOpen(false);
@@ -32,55 +23,54 @@ export function Navbar() {
 
   return (
     <>
-      <motion.nav
+      <motion.nav 
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled
-          ? "bg-background/80 backdrop-blur-xl border-b border-border/50 py-3"
-          : "bg-transparent py-5"
-          }`}
+        className="fixed top-0 left-0 right-0 z-[1000] h-[80px] bg-white/85 backdrop-blur-[12px] border-b border-gray-100/50"
       >
-        <div className="container mx-auto px-4 sm:px-6 flex items-center justify-between">
-
+        <div className="container mx-auto px-4 sm:px-6 h-full flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 z-50 group -ml-1">
-            <div className="relative overflow-hidden p-1 border border-gray-900">
+          <Link href="/" className="flex items-center z-50 group">
+            <div className="relative overflow-hidden">
+              <div className="relative overflow-hidden border border-black rounded">
               <Image
-                src="/Capture.PNG"
+                src="/logo.PNG"
                 alt="ATEION Logo"
-                width={90}
-                height={24}
-                className="h-8 sm:h-9 w-auto object-contain scale-110 transition-transform duration-300 group-hover:scale-115"
+                width={120}
+                height={48}
+                className="h-10 sm:h-12 w-auto object-contain transition-all duration-300 ease-out group-hover:scale-[1.05]"
                 priority
               />
+              </div>
             </div>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-10">
+          <div className="hidden md:flex items-center gap-[32px]">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`text-[10px] font-sans font-bold uppercase tracking-[0.3em] transition-all duration-300 hover:text-primary relative group py-2 ${pathname === link.href ? "text-primary" : "text-foreground/40"
-                  }`}
+                className={`text-base font-medium text-[#334155] hover:text-[#3B82F6] transition-all duration-300 relative py-2 group ${
+                  pathname === link.href 
+                    ? "text-[#3B82F6] font-semibold" 
+                    : ""
+                }`}
               >
                 {link.name}
-                <span
-                  className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 bg-primary transition-all duration-500 rounded-full ${pathname === link.href
-                    ? "w-1/2"
-                    : "w-0 group-hover:w-1/2"
-                    }`}
-                />
+                <span className={`absolute bottom-0 left-0 h-0.5 bg-[#3B82F6] transition-all duration-300 rounded-full origin-left group-hover:w-full w-0 ${
+                  pathname === link.href ? "w-full" : ""
+                }`} />
               </Link>
             ))}
           </div>
 
           <div className="flex items-center gap-4">
-            <Link
-              href="/enquire"
-              className="hidden sm:inline-flex enquiry-button !px-6 !py-3 !text-[10px] uppercase tracking-widest"
+            {/* Enquire Button */}
+            <Link 
+              href="/enquire" 
+              className="hidden sm:inline-flex items-center px-[32px] py-[12px] text-sm font-semibold bg-gradient-to-r from-[#3B82F6] to-[#2563EB] text-white rounded-[24px] hover:-translate-y-[2px] hover:shadow-[0_10px_24px_rgba(59,130,246,0.3)] transition-all duration-300 hover:shadow-lg active:translate-y-0"
             >
               Enquire
             </Link>
@@ -88,7 +78,7 @@ export function Navbar() {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="md:hidden p-2 text-primary z-50 relative w-10 h-10 flex items-center justify-center"
+              className="md:hidden p-2 text-[#3B82F6] z-50 relative w-10 h-10 flex items-center justify-center"
               aria-label="Toggle menu"
             >
               <AnimatePresence mode="wait">
@@ -127,7 +117,7 @@ export function Navbar() {
             transition={{ duration: 0.4 }}
             className="fixed inset-0 z-40 md:hidden"
           >
-            <div className="absolute inset-0 bg-background/95 backdrop-blur-2xl" />
+            <div className="absolute inset-0 bg-white/95 backdrop-blur-2xl" />
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -144,10 +134,11 @@ export function Navbar() {
                 >
                   <Link
                     href={link.href}
-                    className={`text-4xl sm:text-5xl font-serif transition-all duration-500 ${pathname === link.href
-                      ? "text-primary scale-110 italic"
-                      : "text-foreground/30 hover:text-primary"
-                      }`}
+                    className={`text-4xl sm:text-5xl font-serif transition-all duration-500 ${
+                      pathname === link.href 
+                        ? "text-[#3B82F6] scale-110 italic" 
+                        : "text-gray-500/50 hover:text-[#3B82F6]"
+                    }`}
                   >
                     {link.name}
                   </Link>
@@ -159,9 +150,9 @@ export function Navbar() {
                 transition={{ delay: 0.5 }}
                 className="mt-8"
               >
-                <Link
-                  href="/enquire"
-                  className="enquiry-button !px-10 !py-5 !text-xs"
+                <Link 
+                  href="/enquire" 
+                  className="px-10 py-5 text-sm font-semibold bg-gradient-to-r from-[#3B82F6] to-[#2563EB] text-white rounded-[24px] hover:-translate-y-[2px] hover:shadow-[0_10px_24px_rgba(59,130,246,0.3)] transition-all duration-300"
                 >
                   Submit Enquiry
                 </Link>
