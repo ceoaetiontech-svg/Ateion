@@ -4,6 +4,8 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, CheckCircle2, Clock, Zap, BookOpen, Brain, Target, Shield, MessageSquare, Sparkles } from "lucide-react";
 import Link from "next/link";
 import { useRef } from "react";
+import { Users, CheckCircle, Briefcase, GraduationCap } from "lucide-react";
+
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
@@ -141,115 +143,102 @@ export default function WorkshopsPage() {
     <div ref={containerRef} className="flex flex-col bg-background selection:bg-primary selection:text-primary-foreground">
       
 {/* Hero Section */}
-<section
-  className="
-    relative overflow-hidden
-    text-center
-    pt-[160px] pb-[120px]
-    bg-gradient-to-br
-    from-[#6366F1]
-    to-[#4F46E5]
-  "
->
-  {/* Subtle radial accent */}
-  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.25),transparent_45%)]" />
+<section className="relative overflow-hidden">
+  {/* Background layers */}
+  <div className="absolute inset-0 bg-[#071428]" />
 
-  <div className="container mx-auto px-4 sm:px-6 relative z-10 max-w-[900px]">
-    <motion.div
-      initial="initial"
-      animate="animate"
-      variants={staggerContainer}
-    >
-      {/* Small Label */}
-      <motion.div
-        variants={fadeInUp}
-        className="mb-4"
-      >
-        <span
-          className="
-            text-[17px]
-            font-semibold
-            tracking-[3px]
-            uppercase
-            text-white/80
-          "
-        >
-          CAPABILITY DEVELOPMENT
+  {/* Top radial glow */}
+  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(30,78,216,0.35),transparent_60%)]" />
+
+  {/* Center soft blue density */}
+  <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(11,42,82,0.6),transparent_65%)]" />
+
+  {/* Bottom dark fade */}
+  <div className="absolute inset-0 bg-[linear-gradient(to_bottom,transparent_40%,#050B1A_100%)]" />
+
+  {/* Content */}
+  <div className="relative z-10 min-h-[85vh] flex items-center justify-center px-6">
+    <div className="max-w-[900px] text-center">
+
+      {/* Small label */}
+      <div className="mb-4">
+        <span className="text-[14px] tracking-[3px] font-semibold uppercase text-white/80">
+          Capability Development
         </span>
-      </motion.div>
+      </div>
 
-      {/* Main Heading */}
-      <motion.h1
-        variants={fadeInUp}
-        className="
-          text-[44px] md:text-[68px]
-          font-extrabold
-          tracking-[-2px]
-          leading-[1.1]
-          text-white
-          mb-6
-        "
-      >
-        AI Workshops for Students
-      </motion.h1>
+      {/* Main heading */}
+      <h1 className="text-[40px] sm:text-[64px] font-extrabold text-white leading-[1.1] tracking-[-2px] mb-6">
+        AI Workshops <br /> for Students
+      </h1>
 
       {/* Tagline */}
-      <motion.p
-        variants={fadeInUp}
-        className="
-          text-[30px]
-          font-medium
-          italic
-          text-white
-          leading-[1.4]
-          max-w-[900px]
-          mx-auto
-          mb-12
-        "
-      >
-        &ldquo;Because your potential deserves better tools than chaos and last-minute panic.&rdquo;
-      </motion.p>
-    </motion.div>
+      <p className="text-[28px] font-medium italic text-white leading-[1.4] mb-12">
+        “Because your potential deserves better tools than chaos and last-minute panic.”
+      </p>
+
+      {/* Buttons */}
+      <div className="flex flex-col sm:flex-row gap-6 justify-center">
+        <button className="px-10 py-4 rounded-full bg-blue-600 hover:bg-blue-500 text-white text-lg font-semibold transition">
+          Explore Framework
+        </button>
+
+        <button className="px-10 py-4 rounded-full border border-white/30 text-white text-lg hover:bg-white/10 transition">
+          Workshops →
+        </button>
+      </div>
+    </div>
   </div>
 </section>
 
 
+{/* About Section */}
+<section className="bg-white py-[100px] px-6">
+  <div className="max-w-[1200px] mx-auto text-center">
 
-      {/* About Section */}
-      <section className="py-24 md:py-32 bg-card/30 border-y border-border/50">
-        <div className="container mx-auto px-4 sm:px-6">
-          <div className="grid lg:grid-cols-2 gap-16 items-start">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="text-3xl sm:text-4xl md:text-5xl text-primary font-serif mb-8 leading-tight">Clarity. Control. <br />Confidence.</h2>
-              <div className="w-20 h-1 bg-primary mb-8" />
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              viewport={{ once: true }}
-              className="space-y-8"
-            >
-              <p className="text-lg sm:text-xl text-foreground/80 leading-relaxed font-light">
-                These workshops are designed for students who want to master how they study, plan, and learn in the modern era.
-              </p>
-              <p className="text-base sm:text-lg text-foreground/70 leading-relaxed">
-                Instead of overwhelming tools, we focus on building practical, personalized AI systems that manage time, reduce stress, and target cognitive growth.
-              </p>
-              <div className="bg-background border border-border p-8 rounded-3xl mt-8 shadow-sm">
-                <p className="text-primary text-lg font-serif italic leading-relaxed">
-                  Each session is hands-on, immediate, and designed to transform academic friction into systematic flow.
-                </p>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
+    {/* Main statement */}
+    <motion.h2
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+      viewport={{ once: true }}
+      className="text-[36px] md:text-[56px] font-bold text-[#0F172A] tracking-[-1px] mb-8"
+    >
+      Clarity. Control. Confidence.
+    </motion.h2>
+
+    {/* Description content */}
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, delay: 0.1 }}
+      viewport={{ once: true }}
+      className="max-w-[900px] mx-auto space-y-6"
+    >
+      {/* Paragraph 1 – workshop design */}
+      <p className="text-[20px] text-[#64748B] leading-[1.7]">
+        These workshops are designed for students who want to master how they study,
+        plan, and learn in the modern era — without adding unnecessary complexity.
+      </p>
+
+      {/* Paragraph 2 – practical systems */}
+      <p className="text-[20px] text-[#64748B] leading-[1.7]">
+        Instead of overwhelming tools, we focus on building practical, personalized AI
+        systems that help manage time, reduce stress, and support meaningful cognitive growth.
+      </p>
+
+      {/* Paragraph 3 – hands-on emphasis */}
+      <div className="mt-8 inline-block bg-[#F8FAFC] border border-[#E2E8F0] px-10 py-6 rounded-2xl">
+        <p className="text-[20px] italic text-[#0F172A] leading-[1.6]">
+          Each session is hands-on, immediate, and designed to transform academic friction
+          into systematic, repeatable flow.
+        </p>
+      </div>
+    </motion.div>
+
+  </div>
+</section>
+
 
 {/* Workshops List */}
 <section className="w-full">
@@ -257,37 +246,43 @@ export default function WorkshopsPage() {
     const isGray = index % 2 === 1;
 
     const accents = [
-      {
-        badgeBg: "#EFF6FF",
-        accent: "#3B82F6",
-        shiftBg: "#EFF6FF",
-        shiftText: "#1E40AF",
-      },
-      {
-        badgeBg: "#F3E8FF",
-        accent: "#8B5CF6",
-        shiftBg: "#F3E8FF",
-        shiftText: "#5B21B6",
-      },
-      {
-        badgeBg: "#EEF2FF",
-        accent: "#6366F1",
-        shiftBg: "#EEF2FF",
-        shiftText: "#3730A3",
-      },
-      {
-        badgeBg: "#ECFDF5",
-        accent: "#10B981",
-        shiftBg: "#ECFDF5",
-        shiftText: "#065F46",
-      },
-      {
-        badgeBg: "#FFFBEB",
-        accent: "#F59E0B",
-        shiftBg: "#FFFBEB",
-        shiftText: "#92400E",
-      },
-    ][index];
+  {
+    badgeBg: "#EFF6FF",
+    accent: "#3B82F6",
+    shiftBg: "#EFF6FF",
+    shiftText: "#1E40AF",
+    numberColor: "rgba(59, 130, 246, 0.18)", // Blue
+  },
+  {
+    badgeBg: "#F3E8FF",
+    accent: "#8B5CF6",
+    shiftBg: "#F3E8FF",
+    shiftText: "#5B21B6",
+    numberColor: "rgba(139, 92, 246, 0.18)", // Purple
+  },
+  {
+    badgeBg: "#EEF2FF",
+    accent: "#6366F1",
+    shiftBg: "#EEF2FF",
+    shiftText: "#3730A3",
+    numberColor: "rgba(99, 102, 241, 0.18)", // Indigo
+  },
+  {
+    badgeBg: "#ECFDF5",
+    accent: "#10B981",
+    shiftBg: "#ECFDF5",
+    shiftText: "#065F46",
+    numberColor: "rgba(16, 185, 129, 0.18)", // Green
+  },
+  {
+    badgeBg: "#FFFBEB",
+    accent: "#F59E0B",
+    shiftBg: "#FFFBEB",
+    shiftText: "#92400E",
+    numberColor: "rgba(245, 158, 11, 0.18)", // Amber (slightly stronger)
+  },
+];
+[index];
 
     return (
       <motion.section
@@ -410,35 +405,141 @@ export default function WorkshopsPage() {
 </section>
 
 
-      {/* CTA Section */}
-      <section className="py-24 md:py-48 relative overflow-hidden">
-        <div className="container mx-auto px-4 sm:px-6 text-center">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.98 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-            viewport={{ once: true }}
-            className="max-w-4xl mx-auto bg-accent rounded-[3rem] p-12 sm:p-20 md:p-32 shadow-2xl relative overflow-hidden"
-          >
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,white,transparent_50%)] opacity-30 pointer-events-none" />
-            <div className="relative z-10">
-              <span className="text-[10px] uppercase tracking-[0.4em] font-bold text-primary/40 mb-8 block">Partner with us</span>
-              <h2 className="text-4xl sm:text-5xl md:text-6xl text-primary font-serif mb-10 leading-tight">
-                Bring These AI Workshops <br className="hidden sm:block" /> to Your Students
-              </h2>
-              <p className="text-lg sm:text-xl text-primary/60 font-light leading-relaxed mb-16 max-w-2xl mx-auto">
-                For institutions, groups, or organizations interested in conducting these workshops, submit an enquiry to discuss scheduling and customization.
-              </p>
-              <Link 
-                href="/enquire" 
-                className="enquiry-button px-14 py-6 text-xl"
-              >
-                Submit Institutional Enquiry
-              </Link>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+{/* Delivery & Format Section */}
+<section className="bg-[#0A1628] py-[100px] px-6">
+  <div className="max-w-[1200px] mx-auto text-center">
+
+    {/* Section header */}
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+      viewport={{ once: true }}
+    >
+      {/* Small label */}
+      <div className="text-[14px] font-semibold tracking-[2px] uppercase text-[#3B82F6] mb-3">
+        Execution
+      </div>
+
+      {/* Main heading */}
+      <h2 className="text-[48px] font-bold text-white mb-12">
+        Delivery &amp; Format
+      </h2>
+    </motion.div>
+
+    {/* Feature cards grid */}
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+
+      {/* Card 1 */}
+      <motion.div
+        whileHover={{ y: -6 }}
+        transition={{ duration: 0.3 }}
+        className="rounded-xl p-8 text-center
+                   bg-white/5 backdrop-blur-md
+                   border border-white/10"
+      >
+        <Users className="w-12 h-12 mx-auto mb-4 text-[#3B82F6]" />
+        <p className="text-[18px] font-medium text-[#E2E8F0] leading-relaxed">
+          Live, interactive sessions
+        </p>
+      </motion.div>
+
+      {/* Card 2 */}
+      <motion.div
+        whileHover={{ y: -6 }}
+        transition={{ duration: 0.3 }}
+        className="rounded-xl p-8 text-center
+                   bg-white/5 backdrop-blur-md
+                   border border-white/10"
+      >
+        <CheckCircle className="w-12 h-12 mx-auto mb-4 text-[#3B82F6]" />
+        <p className="text-[18px] font-medium text-[#E2E8F0] leading-relaxed">
+          Practical, step-by-step guidance
+        </p>
+      </motion.div>
+
+      {/* Card 3 */}
+      <motion.div
+        whileHover={{ y: -6 }}
+        transition={{ duration: 0.3 }}
+        className="rounded-xl p-8 text-center
+                   bg-white/5 backdrop-blur-md
+                   border border-white/10"
+      >
+        <Briefcase className="w-12 h-12 mx-auto mb-4 text-[#3B82F6]" />
+        <p className="text-[18px] font-medium text-[#E2E8F0] leading-relaxed">
+          Focus on real student workflows
+        </p>
+      </motion.div>
+
+      {/* Card 4 */}
+      <motion.div
+        whileHover={{ y: -6 }}
+        transition={{ duration: 0.3 }}
+        className="rounded-xl p-8 text-center
+                   bg-white/5 backdrop-blur-md
+                   border border-white/10"
+      >
+        <GraduationCap className="w-12 h-12 mx-auto mb-4 text-[#3B82F6]" />
+        <p className="text-[18px] font-medium text-[#E2E8F0] leading-relaxed">
+          No prior technical background required
+        </p>
+      </motion.div>
+
     </div>
+  </div>
+</section>
+
+
+   {/* CTA Section */}
+<section className="bg-white py-[120px] px-6 text-center">
+  <div className="max-w-[1200px] mx-auto">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+      viewport={{ once: true }}
+    >
+      {/* Small label */}
+      <div className="text-[14px] font-semibold tracking-[2px] uppercase text-[#3B82F6] mb-3">
+        Partner with us
+      </div>
+
+      {/* Main heading */}
+      <h2 className="text-[48px] font-bold text-[#0F172A] mb-6 leading-tight">
+        Bring These AI Workshops to Your Students
+      </h2>
+
+      {/* Description */}
+      <p className="text-[20px] text-[#64748B] leading-[1.6] max-w-[900px] mx-auto mb-12">
+        For institutions, groups, or organizations interested in conducting these workshops,
+        submit an enquiry to discuss scheduling and customization.
+      </p>
+
+      {/* CTA Button */}
+      <motion.div
+        whileHover={{ y: -2 }}
+        transition={{ duration: 0.3 }}
+      >
+        <Link
+          href="/enquire"
+          className="
+            inline-block
+            px-12 py-[18px]
+            text-[18px] font-semibold text-white
+            rounded-xl
+            bg-[linear-gradient(135deg,#3B82F6,#2563EB)]
+            shadow-[0_12px_32px_rgba(59,130,246,0.3)]
+            hover:shadow-[0_16px_48px_rgba(59,130,246,0.4)]
+            transition-all duration-300
+          "
+        >
+          Submit Institutional Enquiry
+        </Link>
+      </motion.div>
+    </motion.div>
+  </div>
+</section>
+</div>
   );
 }
