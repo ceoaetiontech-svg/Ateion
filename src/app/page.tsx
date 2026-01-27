@@ -1,364 +1,283 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowRight, BookOpen, Brain, Lightbulb, Target, Users, GraduationCap, Building2 } from "lucide-react";
+import { motion } from "framer-motion";
+import { ArrowRight, BookOpen, Brain, Lightbulb, Target, Users, GraduationCap, Building2, Award, Shield, TrendingUp } from "lucide-react";
+import { alignmentFeatures, fadeInUp, framework, staggerContainer, stats } from "./pagedata";
 import Link from "next/link";
-import { useRef } from "react";
-
-const fadeInUp = {
-  initial: { opacity: 0, y: 30 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] }
-};
-
-const staggerContainer = {
-  animate: {
-    transition: {
-      staggerChildren: 0.1
-    }
-  }
-};
-
-const framework = [
-  {
-    title: "Interpretative Reasoning",
-    description: "The ability to decode complex information and identify underlying patterns from unfamiliar contexts.",
-    icon: Brain
-  },
-  {
-    title: "Logical Structure",
-    description: "Evaluation of systematic thought frameworks used to construct coherent and defensible arguments.",
-    icon: Target
-  },
-  {
-    title: "Creative Application",
-    description: "The capacity to synthesize knowledge across domains and apply it innovatively to novel scenarios.",
-    icon: Lightbulb
-  },
-  {
-    title: "Analytical Precision",
-    description: "Systematic breakdown of complex problems into manageable components with clear methodology.",
-    icon: BookOpen
-  }
-];
-
-const stats = [
-  { label: "Institutions", value: "200+", icon: Building2 },
-  { label: "Students", value: "50K+", icon: GraduationCap },
-  { label: "Partners", value: "100+", icon: Users }
-];
-
-const alignmentFeatures = [
-  {
-    title: "Aligned with NEP 2020",
-    description: "Framework designed in accordance with National Education Policy guidelines for competency-based assessment."
-  },
-  {
-    title: "Endorsed Nationwide",
-    description: "Trusted by students, educators, and institutions across the country for capability benchmarking."
-  },
-  {
-    title: "National Standard",
-    description: "Building the foundational infrastructure for capability-first evaluation in India."
-  }
-];
 
 export default function Home() {
-  const heroRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: heroRef,
-    offset: ["start start", "end start"]
-  });
-  
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-  const heroScale = useTransform(scrollYProgress, [0, 0.5], [1, 0.98]);
-
   return (
-    <div className="flex flex-col bg-background selection:bg-primary selection:text-primary-foreground">
+    <div className="flex flex-col bg-white font-sans">
       {/* Hero Section */}
-      <section ref={heroRef} className="relative min-h-[100svh] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,var(--color-accent),transparent_70%)] opacity-30 pointer-events-none" />
-        <motion.div 
-          style={{ opacity: heroOpacity, scale: heroScale }}
-          className="container mx-auto px-4 sm:px-6 py-20 text-center relative z-10"
-        >
+      <section className="relative min-h-screen  overflow-hidden bg-gradient-to-br from-[#0A1628] to-[#1E293B]">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.12),transparent_70%)] pointer-events-none"></div>
+        <div className="container mx-auto px-4 sm:px-6 py-20 text-center relative z-10 max-w-[800px] top-0">
+
+          <motion.div
+            initial="initial"
+            animate="animate"
+            variants={{
+              initial: { opacity: 0, y: 20 },
+              animate: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+            }}
+            className="flex items-center justify-center gap-3 mb-5"
+          >
+            <div className="h-px w-8 bg-gradient-to-r from-transparent to-[#3B82F6]/40"></div>
+            <span className="text-[11px] font-medium uppercase tracking-[0.25em] text-[#60A5FA]">The ATEION Standard</span>
+            <div className="h-px w-8 bg-gradient-to-l from-transparent to-[#3B82F6]/40"></div>
+          </motion.div>
+
           <motion.div
             initial="initial"
             animate="animate"
             variants={staggerContainer}
-            className="max-w-6xl mx-auto"
           >
-            <motion.div variants={fadeInUp} className="flex items-center justify-center gap-3 mb-8">
-              <div className="h-px w-6 bg-primary/20" />
-              <span className="text-[10px] sm:text-xs font-sans font-bold uppercase tracking-[0.5em] text-primary/50">
-                The ATEION Standard
-              </span>
-              <div className="h-px w-6 bg-primary/20" />
-            </motion.div>
-
-            <motion.h1 
-              variants={fadeInUp}
-              className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] mb-8 leading-[0.9] text-primary font-serif tracking-tighter"
+            <motion.h1
+              variants={{
+                initial: { opacity: 0, y: 30 },
+                animate: { opacity: 1, y: 0 },
+                transition: { duration: 0.6, delay: 0 }
+              }}
+              className="text-7xl sm:text-6xl lg:text-8xl xl:text-9xl mb-5 leading-[0.95] text-white font-light tracking-tight"
+              style={{ textShadow: '0 4px 12px rgba(0, 0, 0, 0.2)' }}
             >
-              The Capability <br />
-              <span className="italic opacity-90">Benchmark</span>
+              The Capability <br /><span className="font-normal bg-gradient-to-r from-white via-white to-[#93C5FD] bg-clip-text text-transparent">Benchmark</span>
             </motion.h1>
 
-            <motion.p 
-              variants={fadeInUp}
-              className="text-lg sm:text-xl md:text-2xl text-foreground/70 font-sans font-light max-w-3xl mx-auto mb-12 px-4 leading-relaxed"
+            <motion.p
+              variants={{
+                initial: { opacity: 0, y: 30 },
+                animate: { opacity: 1, y: 0 },
+                transition: { duration: 0.6, delay: 0.2 }
+              }}
+              className="text-lg lg:text-xl text-[#94A3B8] font-normal max-w-2xl mx-auto mb-12 leading-relaxed"
             >
               Beyond memorization. Beyond grades. ATEION establishes a national standard for capability-first evaluation.
             </motion.p>
 
-            <motion.div 
-              variants={fadeInUp}
-              className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-24"
+            <motion.div
+              variants={{
+                initial: { opacity: 0, y: 30 },
+                animate: { opacity: 1, y: 0 },
+                transition: { duration: 0.6, delay: 0.4 }
+              }}
+              className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-20"
             >
-              <Link href="/nco" className="enquiry-button px-10">
+              <Link href='/nco'><button className="cursor-pointer group relative px-10 py-3 rounded-full bg-white text-[#0A1628] text-base overflow-hidden transition-all duration-300 hover:bg-[#F8FAFC] hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(255,255,255,0.2)]">
                 Explore Framework
-              </Link>
-              <Link href="/workshops" className="group px-10 py-4 rounded-full border border-border text-primary font-sans font-medium hover:bg-secondary transition-all duration-300 flex items-center gap-2">
-                Workshops <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-              </Link>
+              </button></Link>
+              <Link href='/workshops'><button className="cursor-pointer group relative px-10 py-3 rounded-full bg-white text-[#0A1628] text-base overflow-hidden transition-all duration-300 hover:bg-[#F8FAFC] hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(255,255,255,0.2)]">
+                Workshops
+              </button></Link>
+
             </motion.div>
 
             {/* Stats */}
-            <motion.div 
-              variants={fadeInUp}
-              className="grid grid-cols-3 gap-6 sm:gap-12 max-w-3xl mx-auto border-t border-border/50 pt-12"
+            <motion.div
+              variants={{
+                initial: { opacity: 0, y: 30 },
+                animate: { opacity: 1, y: 0 },
+                transition: { duration: 0.6, delay: 0.6 }
+              }}
+              className="grid grid-cols-3 gap-8 lg:gap-16 max-w-3xl mx-auto pt-12 border-t border-white/10"
             >
               {stats.map((stat, index) => (
-                <div key={index} className="text-center group">
-                  <div className="text-3xl sm:text-4xl md:text-5xl font-serif text-primary mb-2 tracking-tighter">{stat.value}</div>
-                  <div className="text-[10px] sm:text-xs font-sans font-bold uppercase tracking-[0.2em] text-primary/40 group-hover:text-primary transition-colors">{stat.label}</div>
+                <div key={index} className="text-center transition-transform duration-300 hover:-translate-y-1">
+                  <div
+                    className="text-4xl lg:text-5xl xl:text-[64px] mb-2 tracking-tight bg-gradient-to-r from-[#3B82F6] to-[#F59E0B] bg-clip-text text-transparent"
+                  >
+                    {stat.value}
+                  </div>
+                  <div className="text-xs lg:text-base font-medium uppercase tracking-wider text-[#64748B]">{stat.label}</div>
                 </div>
               ))}
             </motion.div>
           </motion.div>
-        </motion.div>
-
-        {/* Scroll indicator */}
-        <motion.div 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 2 }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 hidden md:block"
-        >
-          <motion.div
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-            className="w-px h-16 bg-gradient-to-b from-primary/50 to-transparent"
-          />
-        </motion.div>
+        </div>
       </section>
 
-      {/* Introduction Section */}
-      <section className="py-24 md:py-40 bg-card/30 border-y border-border/50">
-        <div className="container mx-auto px-4 sm:px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true, margin: "-100px" }}
-            className="max-w-5xl mx-auto text-center mb-24 md:mb-32"
-          >
-            <h2 className="text-4xl sm:text-5xl md:text-6xl text-primary mb-10 font-serif leading-tight">
-              Establishing a national standard for <span className="italic">capability evaluation</span>.
+
+      {/* National Standard Section */}
+      <section className="py-24 lg:py-32 bg-white border-b border-[#E2E8F0]">
+        <div className="container mx-auto px-6 lg:px-8 max-w-[1200px]">
+          <motion.div {...fadeInUp} className="text-center mb-16 lg:mb-20">
+            <h2 className="text-4xl lg:text-5xl text-[#0F172A] mb-6 leading-tight tracking-normal">
+              Establishing a national standard for capability evaluation
             </h2>
-            <div className="h-px w-24 bg-primary/20 mx-auto mb-10" />
-            <p className="text-xl sm:text-2xl text-foreground/60 leading-relaxed max-w-4xl mx-auto font-light">
+            <p className="text-lg lg:text-xl text-[#64748B] leading-relaxed max-w-[800px] mx-auto">
               Building the foundational infrastructure for capability-first evaluation in India, trusted by elite institutions nationwide.
             </p>
           </motion.div>
 
+
+
           {/* Alignment Features */}
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {alignmentFeatures.map((feature, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+                whileHover={{ y: -16, boxShadow: "0 12px 48px rgba(0,0,0,0.08)" }}
+                whileTap={{ y: -36, boxShadow: "0 12px 48px rgba(0,0,0,0.08)" }}
+                transition={{ duration: 0.6, delay: index * 0.1, type: "spring", bounce: 0.3 }}
+                // Add separate tap transition
+                transition={{
+                  tap: { type: "spring", bounce: 0.3, duration: 0.6 }
+                }}
                 viewport={{ once: true }}
-                className="bg-background border border-border/50 rounded-[2rem] p-8 md:p-12 group hover:bg-primary hover:border-primary transition-all duration-500"
+                className="bg-white border border-[#E2E8F0] rounded-2xl p-10"
               >
-                <div className="w-1.5 h-12 bg-primary group-hover:bg-accent mb-8 transition-colors" />
-                <h3 className="text-2xl sm:text-3xl text-primary group-hover:text-primary-foreground mb-4 font-serif transition-colors">{feature.title}</h3>
-                <p className="text-base text-foreground/50 group-hover:text-primary-foreground/70 leading-relaxed transition-colors">{feature.description}</p>
+                <div className="w-12 h-12 mb-6 text-[#2563EB]">
+                  <feature.icon size={48} strokeWidth={1.5} />
+                </div>
+                <h3 className="text-2xl text-[#0F172A] mb-4 tracking-normal">{feature.title}</h3>
+                <p className="text-base text-[#64748B] leading-relaxed">{feature.description}</p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
+
+
       {/* Programs Section */}
-      <section className="py-24 md:py-40 bg-background relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-accent opacity-[0.03] blur-[120px] pointer-events-none" />
-        <div className="container mx-auto px-4 sm:px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="flex flex-col md:flex-row md:items-end md:justify-between gap-8 mb-16 md:mb-24"
-          >
+      <section className="py-24 lg:py-32 bg-[#F8FAFC]">
+        <div className="container mx-auto px-6 lg:px-8 max-w-[1200px]">
+          <motion.div {...fadeInUp} className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-16">
             <div className="max-w-2xl">
-              <span className="text-[10px] uppercase tracking-[0.3em] text-primary/50 font-bold mb-4 block">Our Initiatives</span>
-              <h2 className="text-4xl sm:text-5xl md:text-6xl text-primary font-serif">
-                Programs designed to <br className="hidden sm:block" /> cultivate excellence.
+              <span className="text-sm uppercase tracking-wider text-[#2563EB] font-semibold mb-3 block">OUR INITIATIVES</span>
+              <h2 className="text-4xl lg:text-5xl text-[#0F172A] tracking-normal">
+                Programs designed to cultivate excellence
               </h2>
             </div>
-            <Link href="/workshops" className="flex items-center gap-3 text-primary font-sans font-bold uppercase tracking-[0.2em] text-[10px] hover:gap-5 transition-all group border-b border-primary/20 pb-2">
-              View All Programs <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
-            </Link>
+            <button className="cursor-pointer group flex items-center gap-2 text-[#2563EB] font-semibold text-base hover: transition-all">
+              View All Programs <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform duration-300" />
+            </button>
           </motion.div>
 
-          <div className="grid lg:grid-cols-2 gap-8">
+          <div className="grid lg:grid-cols-2 gap-12">
             <motion.div
-              initial={{ opacity: 0, x: -40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              whileHover={{ y: -16, boxShadow: "0 12px 48px rgba(37,99,235,0.15)" }}
+              whileTap={{ y: -36, boxShadow: "0 12px 48px rgba(37,99,235,0.15)" }}
+              transition={{ duration: 0.6, type: "spring", bounce: 0.3 }}
+              transition={{
+                tap: { type: "spring", bounce: 0.3, duration: 0.6 }
+              }}
               viewport={{ once: true }}
-              className="group relative overflow-hidden rounded-[2.5rem] aspect-[4/5] sm:aspect-[16/10] lg:aspect-square bg-primary p-10 md:p-14 flex flex-col justify-between shadow-2xl"
+              className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-white to-[#EFF6FF] border-l-4 border-[#2563EB] p-12"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-              <div className="relative z-10">
-                <span className="text-primary-foreground/40 font-sans font-bold uppercase tracking-[0.4em] text-[10px]">Initiative 01</span>
-              </div>
-              <div className="relative z-10">
-                <h3 className="text-4xl sm:text-5xl md:text-6xl text-primary-foreground mb-6 font-serif leading-tight">National Capability <br />Olympiad</h3>
-                <p className="text-primary-foreground/60 mb-10 max-w-sm text-lg font-light leading-relaxed group-hover:text-primary-foreground/80 transition-colors">
-                  A rigorous examination framework evaluating cognitive reasoning and analytical precision.
-                </p>
-                <Link href="/nco" className="inline-flex items-center gap-3 text-accent font-sans font-bold uppercase tracking-[0.2em] text-xs hover:gap-5 transition-all">
-                  Access Framework <ArrowRight size={16} className="group-hover:translate-x-2 transition-transform" />
-                </Link>
-              </div>
+              <span className="text-sm uppercase tracking-wider text-[#2563EB] font-semibold mb-4 block">INITIATIVE 01</span>
+              <h3 className="text-3xl lg:text-4xl text-[#0F172A] mb-4 leading-tight tracking-normal">National Capability Olympiad</h3>
+              <p className="text-lg text-[#64748B] mb-8 leading-relaxed">
+                A rigorous examination framework evaluating cognitive reasoning and analytical precision.
+              </p>
+              <button className="cursor-pointer group inline-flex items-center gap-2 text-[#2563EB] font-semibold text-base hover:gap-3 transition-all duration-300">
+                Access Framework <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform duration-300" />
+              </button>
             </motion.div>
-
             <motion.div
-              initial={{ opacity: 0, x: 40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              whileHover={{ y: -16, boxShadow: "0 12px 48px rgba(37,99,235,0.15)" }}
+              whileTap={{ y: -36, boxShadow: "0 12px 48px rgba(37,99,235,0.15)" }}
+              transition={{ duration: 0.6, type: "spring", bounce: 0.3 }}
+              transition={{
+                tap: { type: "spring", bounce: 0.3, duration: 0.6 }
+              }}
               viewport={{ once: true }}
-              className="group relative overflow-hidden rounded-[2.5rem] aspect-[4/5] sm:aspect-[16/10] lg:aspect-square bg-card p-10 md:p-14 flex flex-col justify-between border border-border/50 shadow-sm"
+              className="relative overflow-hidden rounded-2xl bg-white border-l-4 border-[#2563EB] p-12"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-              <div className="relative z-10">
-                <span className="text-primary/40 font-sans font-bold uppercase tracking-[0.4em] text-[10px]">Initiative 02</span>
-              </div>
-              <div className="relative z-10">
-                <h3 className="text-4xl sm:text-5xl md:text-6xl text-primary mb-6 font-serif leading-tight">Capability <br />Workshops</h3>
-                <p className="text-foreground/50 mb-10 max-w-sm text-lg font-light leading-relaxed group-hover:text-foreground/70 transition-colors">
-                  Specialized development paths for systematic thinking in the modern era.
-                </p>
-                <Link href="/workshops" className="inline-flex items-center gap-3 text-primary font-sans font-bold uppercase tracking-[0.2em] text-xs hover:gap-5 transition-all">
-                  Explore Path <ArrowRight size={16} className="group-hover:translate-x-2 transition-transform" />
-                </Link>
-              </div>
+              <span className="text-sm uppercase tracking-wider text-[#2563EB] font-semibold mb-4 block">INITIATIVE 02</span>
+              <h3 className="text-3xl lg:text-4xl text-[#0F172A] mb-4 leading-tight tracking-normal">Capability Workshops</h3>
+              <p className="text-lg text-[#64748B] mb-8 leading-relaxed">
+                Specialized development paths for systematic thinking in the modern era.
+              </p>
+              <button className="cursor-pointer group inline-flex items-center gap-2 text-[#2563EB] font-semibold text-base hover:gap-3 transition-all duration-300">
+                Explore Path <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform duration-300" />
+              </button>
             </motion.div>
           </div>
         </div>
       </section>
 
+
       {/* Framework Dimensions Section */}
-      <section className="py-24 md:py-40 bg-background border-t border-border/30">
-        <div className="container mx-auto px-4 sm:px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-20 md:mb-24"
-          >
-            <span className="text-[10px] uppercase tracking-[0.3em] text-primary/50 font-bold mb-4 block">Core Framework</span>
-            <h2 className="text-4xl sm:text-5xl md:text-6xl text-primary font-serif">
-              Dimensions of <span className="italic">Capability</span>
+      <section className="py-24 lg:py-32 bg-[#0A1628] relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.12),transparent_70%)] pointer-events-none"></div>
+        <div className="container mx-auto px-6 lg:px-8 max-w-[1200px]">
+          <motion.div {...fadeInUp} className="text-center mb-16">
+            <span className="text-sm uppercase tracking-wider text-[#3B82F6] font-semibold mb-3 block">CORE FRAMEWORK</span>
+            <h2 className="text-4xl lg:text-5xl text-white tracking-normal">
+              Dimensions of Capability
             </h2>
           </motion.div>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid sm:grid-cols-2 gap-8">
             {framework.map((item, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 40 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+                whileHover={{ y: -16, borderColor: "#3B82F6", boxShadow: "0 2px 8px #3B82F6" }}
+                whileTap={{ y: -36, borderColor: "#3B82F6", boxShadow: "0 2px 8px #3B82F6" }}
+                transition={{ duration: 0.6, delay: index * 0.1, type: "spring", bounce: 0.3 }}
+                transition={{
+                  tap: { type: "spring", bounce: 0.3, duration: 0.6 }
+                }}
                 viewport={{ once: true }}
-                className="bg-card/30 border border-border/50 hover:bg-background hover:border-primary/20 hover:shadow-2xl hover:shadow-primary/5 group transition-all duration-700 p-8 sm:p-10 rounded-[2rem] flex flex-col gap-8"
+                className="bg-white/5 backdrop-blur-sm border border-white/10 hover:border-[#3B82F6]/30 hover:-translate-y-1 hover:shadow-[0_12px_32px_rgba(59,130,246,0.2)]  p-10 rounded-2xl"
               >
-                <div className="w-16 h-16 bg-background border border-border/50 group-hover:bg-primary group-hover:border-primary rounded-2xl flex items-center justify-center transition-all duration-500">
-                  <item.icon className="text-primary group-hover:text-background w-8 h-8 transition-colors" strokeWidth={1.2} />
+                <div className="w-10 h-10 mb-6 text-[#3B82F6]">
+                  <item.icon size={40} strokeWidth={1.5} />
                 </div>
-                <div>
-                  <h4 className="text-2xl mb-4 text-primary font-serif">{item.title}</h4>
-                  <p className="text-base text-foreground/50 leading-relaxed group-hover:text-foreground/70 transition-colors font-light">
-                    {item.description}
-                  </p>
-                </div>
+                <h4 className="text-2xl mb-4 text-white tracking-normal lg:tracking-[0.04em]">{item.title}</h4>
+                <p className="text-base text-[#94A3B8] leading-relaxed">
+                  {item.description}
+                </p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
+
       {/* Philosophy Banner */}
-      <section className="py-24 md:py-48 overflow-hidden bg-primary text-primary-foreground relative">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[radial-gradient(circle_at_center,var(--color-accent),transparent_80%)]" />
+      <section className="py-32 lg:py-40 bg-gradient-to-br from-[#1E293B] to-[#0A1628] text-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.12),transparent_70%)] pointer-events-none"></div>
+        <div className="absolute inset-0 flex items-center justify-center opacity-5 pointer-events-none">
         </div>
-        <div className="container mx-auto px-4 sm:px-6 relative z-10">
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 1.5 }}
-            viewport={{ once: true }}
-            className="flex flex-col items-center text-center"
-          >
-            <motion.h2 
-              initial={{ opacity: 0, y: 60 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-              viewport={{ once: true }}
-              className="text-4xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[11rem] italic leading-tight tracking-tighter mb-4 opacity-40 hover:opacity-100 transition-opacity duration-700"
-            >
+        <div className="container mx-auto px-6 lg:px-8 max-w-4xl relative z-10">
+          <motion.div {...fadeInUp} className="text-center space-y-4">
+            <div className="h-px w-24 bg-white/20 mx-auto mb-12" />
+            <h2 className="text-5xl lg:text-7xl leading-tight lg:tracking-[0.02em]">
               Beyond memorization.
-            </motion.h2>
-            <motion.h2 
-              initial={{ opacity: 0, y: 60 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-              viewport={{ once: true }}
-              className="text-4xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[11rem] leading-tight tracking-tighter"
-            >
+            </h2>
+            <h2 className="text-5xl lg:text-7xl leading-tight lg:tracking-[0.02em]">
               Beyond grades.
-            </motion.h2>
+            </h2>
+            <div className="h-px w-24 bg-white/20 mx-auto mt-12" />
           </motion.div>
         </div>
       </section>
 
+
       {/* Final CTA Section */}
-      <section className="py-24 md:py-48 bg-background">
-        <div className="container mx-auto px-4 sm:px-6">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.98 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-            viewport={{ once: true }}
-            className="bg-accent rounded-[3rem] p-12 sm:p-20 md:p-32 text-center relative overflow-hidden shadow-2xl"
-          >
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,white,transparent_50%)] opacity-40 pointer-events-none" />
-            <div className="relative z-10">
-              <span className="text-[10px] sm:text-xs font-bold uppercase tracking-[0.5em] text-primary/40 mb-10 block">Partner with ATEION</span>
-              <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-primary mb-12 font-serif leading-tight">Begin Your Institution&apos;s <br className="hidden sm:block" /> Assessment Journey</h2>
-              <p className="text-primary/60 max-w-2xl mx-auto mb-16 text-lg sm:text-xl font-light leading-relaxed">
-                Join 200+ elite institutions establishing a new benchmark for student capability and cognitive excellence across India.
-              </p>
-              <Link href="/enquire" className="enquiry-button px-14 py-6 text-xl">
-                Submit Institutional Enquiry
-              </Link>
-            </div>
+      <section className="py-24 lg:py-32 bg-white">
+        <div className="container mx-auto px-6 lg:px-8 max-w-[900px]">
+          <motion.div {...fadeInUp} className="text-center">
+            <span className="text-sm uppercase tracking-wider text-[#2563EB] font-semibold mb-3 block">PARTNER WITH ATEION</span>
+            <h2 className="text-4xl lg:text-5xl text-[#0F172A] mb-6 leading-tight tracking-normal">
+              Begin Your Institution's Assessment Journey
+            </h2>
+            <p className="text-lg lg:text-xl text-[#64748B] mb-12 leading-relaxed">
+              Join 200+ elite institutions establishing a new benchmark for student capability and cognitive excellence across India.
+            </p>
+            <Link href='/enquire'><button className="cursor-pointer group relative px-12 py-5 rounded-full bg-gradient-to-r from-[#1E3A5F] to-[#2C5282] text-white text-lg overflow-hidden transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_48px_rgba(30,58,95,0.4)]">
+              <span className="relative z-10">Submit Institutional Enquiry</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-[#2C5282] to-[#1E3A5F] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            </button></Link>
           </motion.div>
         </div>
       </section>
