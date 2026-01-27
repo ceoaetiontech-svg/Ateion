@@ -9,9 +9,9 @@ export default function Home() {
   return (
     <div className="flex flex-col bg-white font-sans">
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#0A1628] to-[#1E293B]">
+      <section className="relative min-h-screen  overflow-hidden bg-gradient-to-br from-[#0A1628] to-[#1E293B]">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.12),transparent_70%)] pointer-events-none"></div>
-        <div className="container mx-auto px-6 lg:px-8 py-32 text-center relative z-10 max-w-[800px]">
+        <div className="container mx-auto px-4 sm:px-6 py-20 text-center relative z-10 max-w-[800px] top-0">
 
           <motion.div
             initial="initial"
@@ -20,7 +20,7 @@ export default function Home() {
               initial: { opacity: 0, y: 20 },
               animate: { opacity: 1, y: 0, transition: { duration: 0.6 } }
             }}
-            className="flex items-center justify-center gap-3 mb-8"
+            className="flex items-center justify-center gap-3 mb-5"
           >
             <div className="h-px w-8 bg-gradient-to-r from-transparent to-[#3B82F6]/40"></div>
             <span className="text-[11px] font-medium uppercase tracking-[0.25em] text-[#60A5FA]">The ATEION Standard</span>
@@ -38,7 +38,7 @@ export default function Home() {
                 animate: { opacity: 1, y: 0 },
                 transition: { duration: 0.6, delay: 0 }
               }}
-              className="text-6xl sm:text-7xl lg:text-8xl xl:text-9xl mb-10 leading-[0.95] text-white font-light tracking-tight"
+              className="text-7xl sm:text-6xl lg:text-8xl xl:text-9xl mb-5 leading-[0.95] text-white font-light tracking-tight"
               style={{ textShadow: '0 4px 12px rgba(0, 0, 0, 0.2)' }}
             >
               The Capability <br /><span className="font-normal bg-gradient-to-r from-white via-white to-[#93C5FD] bg-clip-text text-transparent">Benchmark</span>
@@ -63,10 +63,10 @@ export default function Home() {
               }}
               className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-20"
             >
-              <Link href='/nco'><button className="cursor-pointer group relative px-10 py-4 rounded-xl bg-white text-[#0A1628] text-lg overflow-hidden transition-all duration-300 hover:bg-[#F8FAFC] hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(255,255,255,0.2)]">
+              <Link href='/nco'><button className="cursor-pointer group relative px-10 py-3 rounded-full bg-white text-[#0A1628] text-base overflow-hidden transition-all duration-300 hover:bg-[#F8FAFC] hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(255,255,255,0.2)]">
                 Explore Framework
               </button></Link>
-              <Link href='/workshops'><button className="cursor-pointer group relative px-10 py-4 rounded-xl bg-white text-[#0A1628] text-lg overflow-hidden transition-all duration-300 hover:bg-[#F8FAFC] hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(255,255,255,0.2)]">
+              <Link href='/workshops'><button className="cursor-pointer group relative px-10 py-3 rounded-full bg-white text-[#0A1628] text-base overflow-hidden transition-all duration-300 hover:bg-[#F8FAFC] hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(255,255,255,0.2)]">
                 Workshops
               </button></Link>
 
@@ -274,7 +274,7 @@ export default function Home() {
             <p className="text-lg lg:text-xl text-[#64748B] mb-12 leading-relaxed">
               Join 200+ elite institutions establishing a new benchmark for student capability and cognitive excellence across India.
             </p>
-            <Link href='/enquire'><button className="cursor-pointer group relative px-12 py-5 rounded-xl bg-gradient-to-r from-[#1E3A5F] to-[#2C5282] text-white text-lg overflow-hidden transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_48px_rgba(30,58,95,0.4)]">
+            <Link href='/enquire'><button className="cursor-pointer group relative px-12 py-5 rounded-full bg-gradient-to-r from-[#1E3A5F] to-[#2C5282] text-white text-lg overflow-hidden transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_48px_rgba(30,58,95,0.4)]">
               <span className="relative z-10">Submit Institutional Enquiry</span>
               <div className="absolute inset-0 bg-gradient-to-r from-[#2C5282] to-[#1E3A5F] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </button></Link>

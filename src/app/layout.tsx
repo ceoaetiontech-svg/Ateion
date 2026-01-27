@@ -51,7 +51,7 @@ export default function RootLayout({
           data-custom-data='{"appName": "ATEION", "version": "1.0.0"}'
         />
         <Navbar />
-        <main className="min-h-screen pt-16 sm:pt-20">
+        <main className="pt-14">
           {children}
         </main>
         <Footer />
