@@ -162,24 +162,24 @@ export default function WorkshopsPage() {
 
       {/* Small label */}
       <div className="mb-4">
-        <span className="text-[14px] tracking-[3px] font-semibold uppercase text-white/80">
+        <span className="text-[14px] tracking-[3px] uppercase text-white/80">
           Capability Development
         </span>
       </div>
 
       {/* Main heading */}
-      <h1 className="text-[40px] sm:text-[64px] font-extrabold text-white leading-[1.1] tracking-[-2px] mb-6">
+      <h1 className="text-[45px] sm:text-[69px]  text-white leading-[1.1] tracking-[-2px] mb-6">
         AI Workshops <br /> for Students
       </h1>
 
       {/* Tagline */}
-      <p className="text-[28px] font-medium italic text-white leading-[1.4] mb-12">
+      <p className="text-[28px]  italic text-white leading-[1.4] mb-12">
         “Because your potential deserves better tools than chaos and last-minute panic.”
       </p>
 
       {/* Buttons */}
       <div className="flex flex-col sm:flex-row gap-6 justify-center">
-        <button className="px-10 py-4 rounded-full bg-blue-600 hover:bg-blue-500 text-white text-lg font-semibold transition">
+        <button className="px-10 py-4 rounded-full bg-blue-600 hover:bg-blue-500 text-white text-lg  transition">
           Explore Framework
         </button>
 
@@ -202,7 +202,7 @@ export default function WorkshopsPage() {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8 }}
       viewport={{ once: true }}
-      className="text-[36px] md:text-[56px] font-bold text-[#0F172A] tracking-[-1px] mb-8"
+      className="text-[36px] md:text-[56px]  text-[#0F172A] tracking-[-1px] mb-8"
     >
       Clarity. Control. Confidence.
     </motion.h2>
@@ -239,77 +239,75 @@ export default function WorkshopsPage() {
   </div>
 </section>
 
-
 {/* Workshops List */}
 <section className="w-full">
   {workshops.map((workshop, index) => {
     const isGray = index % 2 === 1;
 
     const accents = [
-  {
-    badgeBg: "#EFF6FF",
-    accent: "#3B82F6",
-    shiftBg: "#EFF6FF",
-    shiftText: "#1E40AF",
-    numberColor: "rgba(59, 130, 246, 0.18)", // Blue
-  },
-  {
-    badgeBg: "#F3E8FF",
-    accent: "#8B5CF6",
-    shiftBg: "#F3E8FF",
-    shiftText: "#5B21B6",
-    numberColor: "rgba(139, 92, 246, 0.18)", // Purple
-  },
-  {
-    badgeBg: "#EEF2FF",
-    accent: "#6366F1",
-    shiftBg: "#EEF2FF",
-    shiftText: "#3730A3",
-    numberColor: "rgba(99, 102, 241, 0.18)", // Indigo
-  },
-  {
-    badgeBg: "#ECFDF5",
-    accent: "#10B981",
-    shiftBg: "#ECFDF5",
-    shiftText: "#065F46",
-    numberColor: "rgba(16, 185, 129, 0.18)", // Green
-  },
-  {
-    badgeBg: "#FFFBEB",
-    accent: "#F59E0B",
-    shiftBg: "#FFFBEB",
-    shiftText: "#92400E",
-    numberColor: "rgba(245, 158, 11, 0.18)", // Amber (slightly stronger)
-  },
-];
-[index];
+      {
+        badgeBg: "#EFF6FF",
+        accent: "#3B82F6",
+        shiftBg: "#EFF6FF",
+        shiftText: "#1E40AF",
+        numberColor: "rgba(59, 130, 246, 0.85)", // Blue
+      },
+      {
+        badgeBg: "#FEE2E2",
+        accent: "#DC2626",
+        shiftBg: "#FEF2F2",
+        shiftText: "#991B1B",
+        numberColor: "rgba(220, 38, 38, 0.85)", // Red
+      },
+      {
+        badgeBg: "#EEF2FF",
+        accent: "#6366F1",
+        shiftBg: "#EEF2FF",
+        shiftText: "#3730A3",
+        numberColor: "rgba(99, 102, 241, 0.85)", // Indigo
+      },
+      {
+        badgeBg: "#ECFDF5",
+        accent: "#10B981",
+        shiftBg: "#ECFDF5",
+        shiftText: "#065F46",
+        numberColor: "rgba(16, 185, 129, 0.85)", // Green
+      },
+      {
+        badgeBg: "#FFFBEB",
+        accent: "#F59E0B",
+        shiftBg: "#FFFBEB",
+        shiftText: "#92400E",
+        numberColor: "rgba(245, 158, 11, 0.85)", // Amber
+      },
+    ][index];
 
     return (
       <motion.section
         key={workshop.id}
-        initial={{ opacity: 0, y: 40 }}
+        initial={{ opacity: 0, y: 36 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7 }}
+        transition={{ duration: 0.6 }}
         viewport={{ once: true }}
-        className={`${isGray ? "bg-[#F8FAFC]" : "bg-white"} py-[100px] px-6 lg:px-16`}
+        className={`${isGray ? "bg-[#F8FAFC]" : "bg-white"} py-[88px] px-6 lg:px-16`}
       >
-        <div className="max-w-[1400px] mx-auto">
+        <div className="max-w-[1280px] mx-auto">
           {/* MAIN GRID */}
-          <div className="grid grid-cols-1 lg:grid-cols-[140px_1fr_1fr] gap-16 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-[110px_1fr_1fr] gap-12 items-start">
 
             {/* WORKSHOP NUMBER */}
-            <div className="relative hidden lg:block">
+            <div className="hidden lg:flex items-start justify-center pt-1">
               <span
-                className="absolute top-[-40px] left-0 text-[120px] font-extrabold opacity-[0.15] leading-none"
-                style={{ color: accents.accent }}
+                className="text-[88px] font-extrabold leading-none select-none"
+                style={{ color: accents.numberColor }}
               >
                 {workshop.id}
               </span>
             </div>
 
             {/* LEFT CONTENT */}
-            <div className="relative z-10 max-w-[720px] space-y-6">
-              <h3 className="text-[36px] font-bold text-[#0F172A] leading-[1.2]">
+            <div className="max-w-[680px] space-y-4">
+              <h3 className="text-[40px] text-[#0F172A] leading-[1.2]">
                 {workshop.title}
               </h3>
 
@@ -319,7 +317,7 @@ export default function WorkshopsPage() {
 
               {/* DURATION BADGE */}
               <div
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-[14px] font-semibold"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-[14px]"
                 style={{
                   background: accents.badgeBg,
                   color: accents.accent,
@@ -329,16 +327,16 @@ export default function WorkshopsPage() {
                 Duration: {workshop.duration}
               </div>
 
-              {/* SHIFT + QUOTE */}
+              {/* SHIFT QUOTE */}
               <div
-                className="mt-8 p-6 pl-8 rounded-lg border-l-4"
+                className="mt-6 p-6 pl-7 rounded-lg border-l-4"
                 style={{
                   background: accents.shiftBg,
                   borderLeftColor: accents.accent,
                 }}
               >
                 <p
-                  className="text-[20px] italic leading-[1.5]"
+                  className="text-[18px] italic leading-[1.5]"
                   style={{ color: accents.shiftText }}
                 >
                   “{workshop.shift}”
@@ -347,21 +345,17 @@ export default function WorkshopsPage() {
             </div>
 
             {/* RIGHT CONTENT */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* WHAT YOU’LL LEARN */}
-              <div
-                className={`border-2 rounded-2xl p-8 ${
-                  isGray ? "bg-white" : "bg-[#F8FAFC]"
-                }`}
-              >
-                <h4 className="text-[20px] font-bold text-[#0F172A] mb-6">
+              <div className="border rounded-2xl p-6 bg-white">
+                <h4 className="text-[21px] text-[#0F172A] mb-4">
                   What You’ll Learn
                 </h4>
-                <ul className="space-y-4">
+                <ul className="space-y-3">
                   {workshop.learn.map((item, i) => (
                     <li key={i} className="flex gap-3 items-start">
                       <CheckCircle2
-                        size={20}
+                        size={18}
                         className="text-[#10B981] flex-shrink-0 mt-1"
                       />
                       <span className="text-[16px] text-[#64748B] leading-relaxed">
@@ -373,19 +367,15 @@ export default function WorkshopsPage() {
               </div>
 
               {/* KEY HIGHLIGHTS */}
-              <div
-                className={`border-2 rounded-2xl p-8 ${
-                  isGray ? "bg-white" : "bg-[#F8FAFC]"
-                }`}
-              >
-                <h4 className="text-[20px] font-bold text-[#0F172A] mb-6">
+              <div className="border rounded-2xl p-6 bg-white">
+                <h4 className="text-[21px] text-[#0F172A] mb-4">
                   Key Highlights
                 </h4>
-                <ul className="space-y-4">
+                <ul className="space-y-3">
                   {workshop.highlights.map((item, i) => (
                     <li key={i} className="flex gap-3 items-start">
                       <Zap
-                        size={20}
+                        size={18}
                         className="text-[#F59E0B] flex-shrink-0 mt-1"
                       />
                       <span className="text-[16px] text-[#64748B] leading-relaxed">
@@ -405,6 +395,8 @@ export default function WorkshopsPage() {
 </section>
 
 
+
+
 {/* Delivery & Format Section */}
 <section className="bg-[#0A1628] py-[100px] px-6">
   <div className="max-w-[1200px] mx-auto text-center">
@@ -422,7 +414,7 @@ export default function WorkshopsPage() {
       </div>
 
       {/* Main heading */}
-      <h2 className="text-[48px] font-bold text-white mb-12">
+      <h2 className="text-[58px]  text-white mb-12">
         Delivery &amp; Format
       </h2>
     </motion.div>
@@ -506,7 +498,7 @@ export default function WorkshopsPage() {
       </div>
 
       {/* Main heading */}
-      <h2 className="text-[48px] font-bold text-[#0F172A] mb-6 leading-tight">
+      <h2 className="text-[45px]  text-[#0F172A] mb-6 leading-tight">
         Bring These AI Workshops to Your Students
       </h2>
 
