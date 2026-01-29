@@ -257,7 +257,7 @@ export default function WorkshopsPage() {
         accent: "#DC2626",
         shiftBg: "#FEF2F2",
         shiftText: "#991B1B",
-        numberColor: "rgba(220, 38, 38, 0.85)", // Red
+        numberColor: "rgba(220, 38, 38, 0.6)", // Red
       },
       {
         badgeBg: "#EEF2FF",
@@ -483,27 +483,36 @@ export default function WorkshopsPage() {
 </section>
 
 
-   {/* CTA Section */}
-<section className="bg-white py-[120px] px-6 text-center">
+ {/* CTA Section */}
+<section className="bg-[#FBF9F6] py-[100px] px-6">
   <div className="max-w-[1200px] mx-auto">
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
       viewport={{ once: true }}
+      className="
+        bg-[#EAE6DE]
+        rounded-[32px]
+        px-6 sm:px-12
+        py-[80px]
+        text-center
+        shadow-sm
+      "
     >
       {/* Small label */}
-      <div className="text-[14px] font-semibold tracking-[2px] uppercase text-[#3B82F6] mb-3">
+      <div className="text-[15px] tracking-[3px] uppercase text-[#6B7280] mb-5">
         Partner with us
       </div>
 
       {/* Main heading */}
-      <h2 className="text-[45px]  text-[#0F172A] mb-6 leading-tight">
-        Bring These AI Workshops to Your Students
+      <h2 className="text-[44px] sm:text-[55px] text-[#0F172A] leading-tight mb-6">
+        Bring These AI Workshops <br className="hidden sm:block" />
+        to Your Students
       </h2>
 
       {/* Description */}
-      <p className="text-[20px] text-[#64748B] leading-[1.6] max-w-[900px] mx-auto mb-12">
+      <p className="text-[25px] sm:text-[22px] text-[#6B7280] leading-[1.7] max-w-[800px] mx-auto mb-12">
         For institutions, groups, or organizations interested in conducting these workshops,
         submit an enquiry to discuss scheduling and customization.
       </p>
@@ -516,13 +525,16 @@ export default function WorkshopsPage() {
         <Link
           href="/enquire"
           className="
-            inline-block
-            px-12 py-[18px]
-            text-[18px] font-semibold text-white
-            rounded-xl
-            bg-[linear-gradient(135deg,#3B82F6,#2563EB)]
-            shadow-[0_12px_32px_rgba(59,130,246,0.3)]
-            hover:shadow-[0_16px_48px_rgba(59,130,246,0.4)]
+            inline-flex
+            items-center
+            justify-center
+            px-12 py-[16px]
+            text-[17px]
+            text-white
+            rounded-full
+            bg-black
+            shadow-[0_10px_28px_rgba(0,0,0,0.25)]
+            hover:shadow-[0_16px_40px_rgba(0,0,0,0.35)]
             transition-all duration-300
           "
         >
