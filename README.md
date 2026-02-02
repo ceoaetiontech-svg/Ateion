@@ -1,3 +1,5 @@
+java, postgres, maven, nodejs
+
 In one terminal 
 
 ```bash
