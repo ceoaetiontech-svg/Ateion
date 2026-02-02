@@ -126,7 +126,7 @@ export default function Home() {
                   tap: { type: "spring", bounce: 0.3, duration: 0.6 }
                 }}
                 viewport={{ once: true }}
-                className="bg-white border border-[#E2E8F0] rounded-2xl p-10"
+                className="bg-gradient-to-br from-slate-50 to-gray-50 border-2 border-gray-200/50 hover:border-[#2563EB]/60 shadow-lg hover:shadow-2xl rounded-2xl p-10"
               >
                 <div className="w-12 h-12 mb-6 text-[#2563EB]">
                   <feature.icon size={48} strokeWidth={1.5} />

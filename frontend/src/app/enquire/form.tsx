@@ -36,34 +36,56 @@ const EnquireForm = () => {
 
     const onSubmit = async (data: FormValues) => {
         setIsLoading(true);
-        try {
 
-            toast.loading("Submitting enquiry...", {
-                toastId: "form-submit"
+        toast.loading("Submitting to backend...", {
+            toastId: "form-submit"
+        });
+
+        try {
+            const response = await fetch('http://localhost:8081/api/enquiries', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
             });
 
-            await tablesDB.createRow(
-                DATABASE_ID,
-                TABLE_ID,
-                ID.unique(),
-                data
-            );
+            if (!response.ok) {
+                const errorText = await response.text();
+                throw new Error(`Backend failed: ${response.status} ${response.statusText} - ${errorText.slice(0, 100)}`);
+            }
+
+            const result = await response.json();
 
             toast.update("form-submit", {
-                render: "✅ Enquiry submitted successfully!",
+                render: `Success! Enquiry saved (ID: ${result.id || 'saved'})`,
                 type: "success",
                 isLoading: false,
                 autoClose: 4000
             });
+
             reset();
-        } catch (error) {
+
+        } catch (error: any) {
+            console.error("Backend error:", error);
+
+            let errorMessage = "Unknown error";
+            if (error.message.includes('Failed to fetch')) {
+                errorMessage = "Backend not running (localhost:8081 down)";
+            } else if (error.message.includes('400')) {
+                errorMessage = "Bad request - check form data";
+            } else if (error.message.includes('500')) {
+                errorMessage = "Server error - backend crashed";
+            } else {
+                errorMessage = error.message;
+            }
+
             toast.update("form-submit", {
-                render: "❌ Submission failed. Please try again.",
+                render: `${errorMessage}`,
                 type: "error",
                 isLoading: false,
-                autoClose: 5000
+                autoClose: 6000
             });
-            console.error("Appwrite error:", error);
         } finally {
             setIsLoading(false);
         }

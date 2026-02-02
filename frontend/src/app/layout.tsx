@@ -6,6 +6,9 @@ import VisualEditsMessenger from "../visual-edits/VisualEditsMessenger";
 import ErrorReporter from "@/components/ErrorReporter";
 import Script from "next/script";
 import { Instrument_Sans, Instrument_Serif } from "next/font/google";
+import ToastProvider from "@/components/ToastProvider";
+import "react-toastify/dist/ReactToastify.css";
+
 
 const instrumentSans = Instrument_Sans({
   subsets: ["latin"],
@@ -51,10 +54,11 @@ export default function RootLayout({
           data-custom-data='{"appName": "ATEION", "version": "1.0.0"}'
         />
         <Navbar />
-        <main className="min-h-screen pt-16 sm:pt-20">
+        <main className="pt-14">
           {children}
         </main>
         <Footer />
+        <ToastProvider />
         <VisualEditsMessenger />
       </body>
     </html>
