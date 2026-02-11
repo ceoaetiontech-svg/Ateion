@@ -512,7 +512,7 @@ export default function WorkshopsPage() {
       </h2>
 
       {/* Description */}
-      <p className="text-[25px] sm:text-[22px] text-[#6B7280] leading-[1.7] max-w-[800px] mx-auto mb-12">
+      <p className="text-[26px] sm:text-[22px] text-[#6B7280] leading-[1.7] max-w-[800px] mx-auto mb-12">
         For institutions, groups, or organizations interested in conducting these workshops,
         submit an enquiry to discuss scheduling and customization.
       </p>
