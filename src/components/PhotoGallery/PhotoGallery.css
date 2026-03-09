@@ -1,0 +1,819 @@
+/* ═══════════════════════════════════════════════════════════════
+   PhotoGallery.css — All styles for the PhotoGallery component
+   Uses CSS custom properties (variables) for consistent theming
+═══════════════════════════════════════════════════════════════ */
+
+/* ── GOOGLE FONTS IMPORT ── */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap');
+/* Imports 2 fonts from Google:
+   - Cormorant Garamond → elegant serif font used for headings and titles
+   - Outfit → clean sans-serif font used for body text and UI elements */
+
+/* ── CSS CUSTOM PROPERTIES (VARIABLES) ── */
+:root {
+  /* Background colors — dark layered surfaces */
+  --bg: #0b0a0d;              /* Darkest background — main page background */
+  --bg-2: #131118;            /* Slightly lighter — used for cards/panels */
+  --bg-3: #1a1820;            /* Lightest surface — used for inputs/thumbnails */
+
+  /* Border colors — subtle white with low opacity */
+  --border: rgba(255,255,255,0.07);   /* Very subtle border — default dividers */
+  --border-2: rgba(255,255,255,0.12); /* Slightly brighter — hover state borders */
+
+  /* Text colors — warm off-white palette */
+  --text: #ede9e3;    /* Primary text — main readable content */
+  --text-2: #9d9790; /* Secondary text — subtitles and descriptions */
+  --text-3: #5c5854; /* Muted text — placeholders, labels, faint info */
+
+  /* Accent colors — warm gold theme */
+  --accent: #c9a96e;                    /* Main gold accent — highlights and active states */
+  --accent-dim: rgba(201,169,110,0.15); /* Dimmed gold — active filter button background */
+  --accent-glow: rgba(201,169,110,0.08);/* Very faint gold — hover glow effects */
+
+  /* Animation easing curves */
+  --ease: cubic-bezier(0.25,0.46,0.45,0.94);      /* Smooth ease-out — most transitions */
+  --ease-bounce: cubic-bezier(0.34,1.56,0.64,1);  /* Bounce effect — expand icon on hover */
+
+  /* Misc */
+  --radius: 6px;      /* Default border radius for cards and images */
+  --header-h: 72px;   /* Fixed header height — used for sticky positioning */
+}
+
+/* ── GLOBAL RESET ── */
+*, *::before, *::after {
+  box-sizing: border-box; /* Includes padding/border in element's total width/height */
+  margin: 0;              /* Removes default browser margins */
+  padding: 0;             /* Removes default browser padding */
+}
+
+html {
+  scroll-behavior: smooth; /* Enables smooth scrolling for anchor links */
+}
+
+body {
+  background: var(--bg);               /* Dark page background */
+  color: var(--text);                   /* Default text color */
+  font-family: 'Outfit', sans-serif;    /* Default font for all text */
+  font-weight: 300;                     /* Light font weight by default */
+  -webkit-font-smoothing: antialiased;  /* Smoother font rendering on Mac/Chrome */
+  overflow-x: hidden;                   /* Prevents horizontal scroll */
+}
+
+img {
+  display: block;   /* Removes inline spacing gap below images */
+  max-width: 100%;  /* Prevents images from overflowing their container */
+}
+
+button {
+  cursor: pointer;          /* Shows hand cursor on hover */
+  font-family: inherit;     /* Uses parent font instead of browser default */
+}
+
+a {
+  color: inherit;           /* Links use parent text color */
+  text-decoration: none;    /* Removes default underline from links */
+}
+
+/* ══════════════════════════════════════════════════════════════
+   ROOT & NOISE OVERLAY
+══════════════════════════════════════════════════════════════ */
+
+.pg-root {
+  min-height: 100vh; /* Ensures page fills full viewport height */
+  position: relative; /* Positioning context for absolute children */
+}
+
+.pg-noise {
+  position: fixed;        /* Stays fixed while page scrolls */
+  inset: 0;               /* Covers entire viewport (top/right/bottom/left: 0) */
+  pointer-events: none;   /* Clicks pass through — purely decorative */
+  z-index: 0;             /* Behind all content */
+  opacity: 0.025;         /* Very subtle — almost invisible */
+  background-image: url("data:image/svg+xml,...");
+  /* SVG fractal noise texture — creates subtle film grain effect */
+  background-size: 200px 200px; /* Repeating tile size for the noise pattern */
+}
+
+/* ══════════════════════════════════════════════════════════════
+   HEADER
+══════════════════════════════════════════════════════════════ */
+
+.pg-header {
+  position: sticky;       /* Sticks to top when scrolling */
+  top: 0;                 /* Sticks at very top of viewport */
+  z-index: 100;           /* Above all page content */
+  height: var(--header-h); /* Fixed 72px height */
+  padding: 0 5vw;         /* Horizontal padding — 5% of viewport width */
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Logo left, controls right */
+  gap: 1.5rem;
+  background: rgba(11,10,13,0.7); /* Semi-transparent dark background */
+  backdrop-filter: blur(20px);    /* Frosted glass blur effect */
+  border-bottom: 1px solid transparent; /* Hidden border initially */
+  transition: border-color 0.3s, box-shadow 0.3s; /* Smooth transition when scrolled */
+}
+
+.pg-header--scrolled {
+  border-color: var(--border);              /* Shows border when page is scrolled */
+  box-shadow: 0 1px 40px rgba(0,0,0,0.4);  /* Adds shadow when scrolled */
+}
+
+/* Header left side — brand/logo area */
+.pg-header-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-shrink: 0; /* Prevents brand from shrinking when space is tight */
+}
+
+.pg-brand-icon {
+  font-size: 1.5rem;
+  color: var(--accent); /* Gold colored brand icon */
+  line-height: 1;
+}
+
+.pg-brand-name {
+  display: block;
+  font-family: 'Cormorant Garamond', serif; /* Elegant serif for brand name */
+  font-size: 1.35rem;
+  font-weight: 400;
+  letter-spacing: 0.05em; /* Slight spacing for premium feel */
+  line-height: 1.1;
+}
+
+.pg-brand-tagline {
+  display: block;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;      /* Wide spacing for small caps look */
+  text-transform: uppercase;
+  color: var(--text-3);        /* Muted color — secondary info */
+}
+
+/* Header right side — search and count */
+.pg-header-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Search input wrapper */
+.pg-search-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--bg-3);              /* Dark input background */
+  border: 1px solid var(--border);
+  border-radius: 100px;                  /* Pill shaped search bar */
+  padding: 0.45rem 1rem;
+  transition: border-color 0.2s;
+}
+
+.pg-search-label:focus-within {
+  border-color: var(--accent); /* Gold border when input is focused */
+}
+
+.pg-search-label svg {
+  width: 14px; height: 14px;
+  color: var(--text-3);  /* Muted search icon */
+  flex-shrink: 0;         /* Prevents icon from shrinking */
+}
+
+.pg-search-label input {
+  background: none;   /* Transparent input background */
+  border: none;       /* No input border — label handles it */
+  outline: none;      /* No focus outline — label handles it */
+  color: var(--text);
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 300;
+  width: 200px;       /* Fixed input width */
+}
+
+.pg-search-label input::placeholder {
+  color: var(--text-3); /* Muted placeholder text */
+}
+
+.pg-photo-count {
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  color: var(--text-3);   /* Muted count display e.g. "18 photos" */
+  white-space: nowrap;     /* Prevents wrapping */
+}
+
+/* ══════════════════════════════════════════════════════════════
+   HERO SECTION
+══════════════════════════════════════════════════════════════ */
+
+.pg-hero {
+  position: relative;          /* Positioning context for decorative lines */
+  padding: 5rem 5vw 3.5rem;    /* Large top padding for hero feel */
+  overflow: hidden;             /* Clips decorative lines at edges */
+}
+
+/* Decorative vertical lines in hero background */
+.pg-hero-lines {
+  position: absolute;
+  top: 0; right: 5vw;   /* Positioned on right side of hero */
+  height: 100%;
+  display: flex;
+  gap: 12px;             /* Space between lines */
+  pointer-events: none;  /* Non-interactive — decorative only */
+}
+
+.pg-hero-lines span {
+  display: block;
+  width: 1px;                /* Very thin vertical lines */
+  height: 100%;
+  background: var(--border); /* Subtle white border color */
+}
+
+.pg-hero-title {
+  font-family: 'Cormorant Garamond', serif; /* Elegant serif for main heading */
+  font-size: clamp(3rem, 8vw, 7rem);
+  /* clamp() → minimum 3rem, scales with viewport, maximum 7rem */
+  font-weight: 300;
+  line-height: 0.95;       /* Tight line height for large display text */
+  letter-spacing: -0.02em; /* Slightly tighter spacing for large text */
+  position: relative;
+  z-index: 1;              /* Above decorative lines */
+}
+
+.pg-hero-title em {
+  font-style: italic;
+  color: var(--accent); /* Gold italic emphasis on "Impact" */
+}
+
+.pg-hero-sub {
+  margin-top: 1.5rem;
+  max-width: 560px;     /* Limits line length for readability */
+  font-size: 0.9rem;
+  line-height: 1.7;     /* Generous line height for body text */
+  color: var(--text-2); /* Secondary text color */
+  font-weight: 300;
+  position: relative;
+  z-index: 1;           /* Above decorative lines */
+}
+
+/* Hero statistics row */
+.pg-hero-stats {
+  display: flex;
+  gap: 2.5rem;
+  margin-top: 3rem;
+  flex-wrap: wrap;   /* Wraps on small screens */
+  position: relative;
+  z-index: 1;        /* Above decorative lines */
+}
+
+.pg-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem; /* Tight spacing between number and label */
+}
+
+.pg-stat span {
+  font-family: 'Cormorant Garamond', serif; /* Serif for large stat numbers */
+  font-size: 2.2rem;
+  font-weight: 300;
+  color: var(--accent); /* Gold numbers */
+  line-height: 1;
+}
+
+.pg-stat p {
+  font-size: 0.72rem;
+  letter-spacing: 0.12em; /* Wide tracking for small caps label */
+  text-transform: uppercase;
+  color: var(--text-3);    /* Muted stat labels */
+}
+
+/* ══════════════════════════════════════════════════════════════
+   CATEGORY FILTER NAV
+══════════════════════════════════════════════════════════════ */
+
+.pg-filters {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0 5vw 2.5rem; /* Matches hero horizontal padding */
+  flex-wrap: wrap;         /* Wraps filter buttons on small screens */
+}
+
+.pg-filter-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: none;                 /* Transparent by default */
+  border: 1px solid var(--border);
+  color: var(--text-2);
+  font-size: 0.8rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  padding: 0.45rem 1rem;
+  border-radius: 100px;             /* Pill shape */
+  transition: all 0.2s var(--ease); /* Smooth all property transitions */
+}
+
+.pg-filter-btn:hover {
+  border-color: var(--border-2); /* Brighter border on hover */
+  color: var(--text);             /* Full brightness text on hover */
+}
+
+.pg-filter-btn--active {
+  background: var(--accent-dim);  /* Subtle gold background when active */
+  border-color: var(--accent);    /* Gold border when active */
+  color: var(--accent);           /* Gold text when active */
+}
+
+/* Count pill inside each filter button */
+.pg-filter-pill {
+  background: var(--bg-3);   /* Dark pill background */
+  border-radius: 100px;       /* Rounded pill */
+  font-size: 0.68rem;
+  padding: 0.1rem 0.45rem;
+  color: var(--text-3);       /* Muted count number */
+}
+
+.pg-filter-btn--active .pg-filter-pill {
+  background: var(--accent-dim); /* Gold pill when button is active */
+  color: var(--accent);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   PHOTO GRID
+══════════════════════════════════════════════════════════════ */
+
+.pg-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr); /* 12 equal columns — flexible layout system */
+  grid-auto-rows: 72px;                    /* Each row unit is 72px tall */
+  gap: 10px;                               /* Gap between grid items */
+  padding: 0 5vw 6vw;                     /* Matches horizontal padding of other sections */
+}
+
+/* Grid item size variants — each uses different column/row spans */
+.pg-item--tall {
+  grid-column: span 4; /* Takes 4 of 12 columns (33% width) */
+  grid-row: span 7;    /* Takes 7 row units (7 × 72px = 504px tall) */
+}
+
+.pg-item--wide {
+  grid-column: span 8; /* Takes 8 of 12 columns (66% width) */
+  grid-row: span 4;    /* Takes 4 row units (4 × 72px = 288px tall) */
+}
+
+.pg-item--square {
+  grid-column: span 4; /* Takes 4 of 12 columns (33% width) */
+  grid-row: span 4;    /* Takes 4 row units (4 × 72px = 288px tall) — roughly square */
+}
+
+/* Base photo card styles */
+.pg-item {
+  position: relative;   /* Positioning context for overlay and corner elements */
+  overflow: hidden;     /* Clips image zoom and overlay within card bounds */
+  border-radius: var(--radius); /* Rounded corners */
+  background: var(--bg-3);       /* Dark placeholder while image loads */
+  cursor: pointer;
+  outline: none;        /* Removes default focus outline — custom handled below */
+  opacity: 0;                                         /* Hidden initially — animated in */
+  transform: translateY(20px) scale(0.98);           /* Starts slightly lower and smaller */
+  transition: opacity 0.55s var(--ease), transform 0.55s var(--ease), box-shadow 0.3s;
+  /* Smooth fade-in and slide-up animation */
+}
+
+.pg-item--visible {
+  opacity: 1;                      /* Fully visible when JS adds this class */
+  transform: translateY(0) scale(1); /* Back to normal position and size */
+}
+
+.pg-item:focus-visible {
+  box-shadow: 0 0 0 2px var(--accent); /* Gold focus ring for keyboard navigation */
+}
+
+/* Image container — handles zoom effect */
+.pg-item-img-wrap {
+  width: 100%;
+  height: 100%;
+  overflow: hidden; /* Clips the zoomed image within card bounds */
+}
+
+.pg-item-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;                        /* Fills container without distortion */
+  transition: transform 0.7s var(--ease);   /* Smooth zoom transition */
+}
+
+.pg-item:hover .pg-item-img-wrap img {
+  transform: scale(1.06); /* Subtle zoom on hover — 6% larger */
+}
+
+/* Dark gradient overlay — revealed on hover */
+.pg-item-overlay {
+  position: absolute;
+  inset: 0; /* Covers entire card */
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.88) 0%,   /* Strong dark at bottom — for text readability */
+    rgba(0,0,0,0.2) 50%,   /* Fades in middle */
+    transparent 100%        /* Transparent at top */
+  );
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Category badge at top, text at bottom */
+  padding: 1rem;
+  opacity: 0;                           /* Hidden initially */
+  transition: opacity 0.35s var(--ease); /* Fades in on hover */
+}
+
+.pg-item:hover .pg-item-overlay {
+  opacity: 1; /* Overlay visible on hover */
+}
+
+/* Category badge at top of overlay */
+.pg-item-cat {
+  align-self: flex-start; /* Don't stretch full width */
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);                       /* Gold text */
+  background: rgba(0,0,0,0.45);              /* Dark pill background */
+  padding: 0.2rem 0.55rem;
+  border-radius: 100px;
+  border: 1px solid rgba(201,169,110,0.3);   /* Subtle gold border */
+}
+
+/* Title and location at bottom of overlay */
+.pg-item-text h3 {
+  font-family: 'Cormorant Garamond', serif; /* Serif for photo titles */
+  font-size: clamp(0.95rem, 2vw, 1.2rem);  /* Responsive font size */
+  font-weight: 400;
+  color: #fff; /* Full white for maximum contrast */
+  line-height: 1.2;
+}
+
+.pg-item-text p {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  color: rgba(255,255,255,0.55); /* Semi-transparent white for location */
+  margin-top: 0.3rem;
+}
+
+.pg-item-text p svg {
+  width: 11px; height: 11px;
+  flex-shrink: 0;
+  color: var(--accent); /* Gold location pin icon */
+}
+
+/* Expand icon in top-right corner of overlay */
+.pg-item-expand {
+  position: absolute;
+  top: 1rem; right: 1rem;
+  width: 32px; height: 32px;
+  border-radius: 50%;                            /* Circular button */
+  border: 1px solid rgba(255,255,255,0.2);
+  display: flex; align-items: center; justify-content: center;
+  transform: scale(0.8);                         /* Starts slightly smaller */
+  transition: transform 0.3s var(--ease-bounce), border-color 0.2s;
+  /* Uses bounce easing for playful pop effect */
+}
+
+.pg-item-expand svg {
+  width: 13px; height: 13px;
+  color: #fff;
+}
+
+.pg-item:hover .pg-item-expand {
+  transform: scale(1);          /* Pops to full size on hover */
+  border-color: var(--accent);  /* Gold border on hover */
+}
+
+/* Decorative L-shaped corner accent */
+.pg-item-corner {
+  position: absolute;
+  bottom: 10px; right: 10px;
+  width: 16px; height: 16px;
+  border-right: 1px solid var(--accent);  /* Right edge of L */
+  border-bottom: 1px solid var(--accent); /* Bottom edge of L */
+  opacity: 0;                              /* Hidden initially */
+  transition: opacity 0.3s;
+}
+
+.pg-item:hover .pg-item-corner {
+  opacity: 1; /* Corner accent appears on hover */
+}
+
+/* Empty state — shown when no photos match filter/search */
+.pg-empty {
+  grid-column: 1 / -1; /* Spans all 12 grid columns */
+  padding: 5rem 0;
+  text-align: center;
+  color: var(--text-3);
+}
+
+.pg-empty span {
+  display: block;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem;
+  font-style: italic; /* Elegant italic for empty message */
+  margin-bottom: 1rem;
+}
+
+.pg-empty button {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--text-2);
+  padding: 0.5rem 1.2rem;
+  border-radius: 100px; /* Pill button */
+  font-size: 0.8rem;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.pg-empty button:hover {
+  border-color: var(--accent); /* Gold border on hover */
+  color: var(--accent);         /* Gold text on hover */
+}
+
+/* ══════════════════════════════════════════════════════════════
+   FOOTER
+══════════════════════════════════════════════════════════════ */
+
+.pg-footer {
+  padding: 2.5rem 5vw;           /* Matches page horizontal padding */
+  border-top: 1px solid var(--border); /* Subtle divider line */
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Brand left, copyright right */
+  gap: 1rem;
+  flex-wrap: wrap; /* Stacks on small screens */
+}
+
+.pg-footer-brand {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  color: var(--accent);      /* Gold brand name in footer */
+  letter-spacing: 0.05em;
+}
+
+.pg-footer p {
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  color: var(--text-3); /* Muted copyright text */
+}
+
+/* ══════════════════════════════════════════════════════════════
+   LIGHTBOX
+══════════════════════════════════════════════════════════════ */
+
+.pg-lightbox {
+  position: fixed;              /* Covers entire viewport */
+  inset: 0;
+  z-index: 1000;                /* Above everything else */
+  background: rgba(6,5,8,0.96); /* Near-black overlay */
+  backdrop-filter: blur(24px);  /* Heavy blur behind lightbox */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  animation: lb-fadein 0.3s var(--ease); /* Fades in when opened */
+}
+
+@keyframes lb-fadein {
+  from { opacity: 0 }  /* Starts invisible */
+  to   { opacity: 1 }  /* Fades to fully visible */
+}
+
+/* Lightbox content panel */
+.pg-lb-panel {
+  width: 100%;
+  max-width: 960px;       /* Limits panel width on large screens */
+  display: flex;
+  flex-direction: column; /* Stacks topbar, image, info, thumbnails */
+  animation: lb-scalein 0.4s var(--ease); /* Scales in when opened */
+}
+
+@keyframes lb-scalein {
+  from { opacity: 0; transform: scale(0.95) translateY(10px) } /* Starts smaller and lower */
+  to   { opacity: 1; transform: scale(1) translateY(0) }        /* Animates to normal */
+}
+
+/* Top bar — counter and action buttons */
+.pg-lb-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Counter left, buttons right */
+  margin-bottom: 1rem;
+}
+
+.pg-lb-counter {
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  color: var(--text-3); /* Muted "3 / 18" counter */
+}
+
+.pg-lb-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* Space between download and close buttons */
+}
+
+/* Circular action buttons (download, close) */
+.pg-lb-btn {
+  display: flex; align-items: center; justify-content: center;
+  width: 38px; height: 38px;
+  border-radius: 50%;              /* Circular shape */
+  border: 1px solid var(--border);
+  background: none;
+  color: var(--text-2);
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+
+.pg-lb-btn svg { width: 16px; height: 16px; }
+
+.pg-lb-btn:hover {
+  border-color: var(--accent);         /* Gold border on hover */
+  color: var(--accent);                 /* Gold icon on hover */
+  background: var(--accent-glow);       /* Faint gold background on hover */
+}
+
+/* Main image stage area */
+.pg-lb-stage {
+  position: relative;       /* Positioning context for prev/next buttons */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius);
+  overflow: hidden;          /* Clips image to rounded corners */
+  background: var(--bg-2);  /* Dark background while image loads */
+}
+
+.pg-lb-img {
+  max-width: 100%;
+  max-height: 60vh;         /* Limits height to 60% of viewport */
+  object-fit: contain;       /* Shows full image without cropping */
+  display: block;
+  border-radius: var(--radius);
+  animation: lb-imgfade 0.3s var(--ease); /* Fades in when photo changes */
+}
+
+@keyframes lb-imgfade {
+  from { opacity: 0; transform: scale(0.97) } /* Starts slightly smaller */
+  to   { opacity: 1; transform: scale(1) }     /* Scales to normal */
+}
+
+/* Previous/Next navigation buttons */
+.pg-lb-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%); /* Vertically centered */
+  width: 44px; height: 44px;
+  border-radius: 50%;            /* Circular buttons */
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(0,0,0,0.5);   /* Dark semi-transparent background */
+  color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  transition: border-color 0.2s, background 0.2s;
+  z-index: 2; /* Above the image */
+}
+
+.pg-lb-nav svg { width: 18px; height: 18px; }
+
+.pg-lb-nav:hover {
+  border-color: var(--accent);              /* Gold border on hover */
+  background: rgba(201,169,110,0.15);       /* Faint gold background */
+}
+
+.pg-lb-nav--prev { left: 12px; }  /* Previous button on left side */
+.pg-lb-nav--next { right: 12px; } /* Next button on right side */
+
+/* Info bar below image */
+.pg-lb-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Title/location left, category badge right */
+  padding: 1rem 0.25rem 0.75rem;
+  border-bottom: 1px solid var(--border); /* Divider between info and thumbnails */
+  gap: 1rem;
+}
+
+.pg-lb-info-text h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  font-style: italic; /* Italic title in lightbox */
+  color: var(--text);
+  line-height: 1.2;
+}
+
+.pg-lb-info-text p {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.77rem;
+  letter-spacing: 0.08em;
+  color: var(--text-2); /* Secondary text for location */
+  margin-top: 0.25rem;
+}
+
+.pg-lb-info-text p svg {
+  width: 12px; height: 12px;
+  color: var(--accent); /* Gold location pin */
+  flex-shrink: 0;
+}
+
+/* Category badge in lightbox info bar */
+.pg-lb-cat-badge {
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);                      /* Gold text */
+  border: 1px solid rgba(201,169,110,0.35);  /* Subtle gold border */
+  border-radius: 100px;                       /* Pill shape */
+  padding: 0.25rem 0.75rem;
+  white-space: nowrap; /* Prevents badge from wrapping */
+  flex-shrink: 0;       /* Prevents badge from shrinking */
+}
+
+/* Horizontal thumbnail strip at bottom of lightbox */
+.pg-lb-thumbstrip {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;        /* Horizontal scroll when thumbnails overflow */
+  padding: 0.75rem 0.25rem 0;
+  scrollbar-width: thin;   /* Firefox — thin scrollbar */
+  scrollbar-color: var(--bg-3) transparent; /* Firefox — dark thumb, transparent track */
+}
+
+/* Chrome/Safari scrollbar styling */
+.pg-lb-thumbstrip::-webkit-scrollbar { height: 4px; }
+.pg-lb-thumbstrip::-webkit-scrollbar-thumb {
+  background: var(--bg-3); /* Dark scrollbar thumb */
+  border-radius: 2px;
+}
+
+/* Individual thumbnail buttons */
+.pg-lb-thumb {
+  flex-shrink: 0;          /* Prevents thumbnails from shrinking */
+  width: 52px; height: 40px;
+  border-radius: 3px;
+  overflow: hidden;         /* Clips image to rounded corners */
+  border: 1px solid transparent; /* Invisible border by default */
+  background: var(--bg-3);
+  padding: 0;
+  opacity: 0.5;             /* Dimmed by default */
+  transition: border-color 0.2s, opacity 0.2s;
+}
+
+.pg-lb-thumb img {
+  width: 100%; height: 100%;
+  object-fit: cover; /* Fills thumbnail without distortion */
+}
+
+.pg-lb-thumb:hover { opacity: 0.8; } /* Slightly brighter on hover */
+
+.pg-lb-thumb--active {
+  border-color: var(--accent); /* Gold border on active thumbnail */
+  opacity: 1;                   /* Full opacity for active thumbnail */
+}
+
+/* ══════════════════════════════════════════════════════════════
+   RESPONSIVE BREAKPOINTS
+══════════════════════════════════════════════════════════════ */
+
+/* ── Tablet (max 900px) ── */
+@media (max-width: 900px) {
+  .pg-item--tall   { grid-column: span 6; grid-row: span 6; }
+  /* Tall items take half width (6/12) instead of third (4/12) */
+
+  .pg-item--wide   { grid-column: span 12; grid-row: span 4; }
+  /* Wide items take full width (12/12) */
+
+  .pg-item--square { grid-column: span 6; grid-row: span 4; }
+  /* Square items take half width (6/12) */
+
+  .pg-hero-stats { gap: 1.5rem; }
+  /* Reduce gap between stats on tablet */
+}
+
+/* ── Mobile (max 640px) ── */
+@media (max-width: 640px) {
+  .pg-grid { grid-auto-rows: 60px; gap: 8px; }
+  /* Smaller row units and gaps on mobile */
+
+  .pg-item--tall, .pg-item--wide, .pg-item--square {
+    grid-column: span 12; /* ALL items take full width on mobile */
+    grid-row: span 5;      /* Fixed height for all items on mobile */
+  }
+
+  .pg-search-label input { width: 130px; }
+  /* Smaller search input on mobile */
+
+  .pg-lb-nav--prev { left: 6px; }
+  .pg-lb-nav--next { right: 6px; }
+  /* Nav buttons closer to edges on mobile */
+
+  .pg-stat span { font-size: 1.8rem; }
+  /* Smaller stat numbers on mobile */
+}
