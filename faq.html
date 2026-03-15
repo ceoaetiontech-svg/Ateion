@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+
+<title>FAQs</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:"Segoe UI", Arial, sans-serif;
+}
+
+body{
+background:#f3efe6;
+padding:60px 20px;
+}
+
+h1{
+text-align:center;
+font-size:38px;
+margin-bottom:40px;
+}
+
+.faq-container{
+max-width:850px;
+margin:auto;
+}
+
+.faq-item{
+background:#f7f3ea;
+border-radius:16px;
+margin-bottom:8px;
+overflow:hidden;
+border:1px solid #eee;
+}
+
+.faq-question{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:18px 22px;
+cursor:pointer;
+font-size:19px;
+font-weight:600;
+color:#2f2b4a;
+}
+
+.arrow{
+width:34px;
+height:34px;
+border-radius:50%;
+background:#e6e1d7;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:18px;
+transition:0.3s;
+}
+
+.faq-answer{
+max-height:0;
+overflow:hidden;
+padding:0 22px;
+font-size:17px;
+color:#4a4a4a;
+line-height:1.7;
+background:#fff;
+transition:max-height 0.35s ease, padding 0.35s ease;
+}
+
+.faq-item.active .faq-answer{
+max-height:200px;
+padding:15px 22px;
+}
+
+.rotate{
+transform:rotate(90deg);
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>FAQs</h1>
+
+<div class="faq-container">
+
+<!-- Q1 ALWAYS OPEN -->
+<div class="faq-item active">
+<div class="faq-question">
+What is Ateion?
+<div class="arrow rotate">›</div>
+</div>
+<div class="faq-answer">
+ATEION is a capability intelligence company that improves education by making human capabilities visible, measurable, and developable.
+</div>
+</div>
+
+<div class="faq-item">
+<div class="faq-question">
+How is Ateion different from traditional education systems?
+<div class="arrow">›</div>
+</div>
+<div class="faq-answer">
+Traditional education focuses on memory and marks, while ATEION focuses on creativity and real-world problem solving.
+</div>
+</div>
+
+<div class="faq-item">
+<div class="faq-question">
+Who can partner with Ateion?
+<div class="arrow">›</div>
+</div>
+<div class="faq-answer">
+Schools, colleges, educators and organizations interested in capability development can partner with ATEION.
+</div>
+</div>
+
+<div class="faq-item">
+<div class="faq-question">
+What services does Ateion provide?
+<div class="arrow">›</div>
+</div>
+<div class="faq-answer">
+ATEION provides capability assessment, development programs, and innovative education solutions.
+</div>
+</div>
+
+<div class="faq-item">
+<div class="faq-question">
+Is Ateion available internationally?
+<div class="arrow">›</div>
+</div>
+<div class="faq-answer">
+Yes, Ateion aims to expand globally and collaborate with institutions across countries.
+</div>
+</div>
+
+<div class="faq-item">
+<div class="faq-question">
+How can I join Ateion programs?
+<div class="arrow">›</div>
+</div>
+<div class="faq-answer">
+You can join Ateion programs through their official website or through institutional partnerships.
+</div>
+</div>
+
+</div>
+
+<script>
+
+const faqItems = document.querySelectorAll(".faq-item");
+
+faqItems.forEach((item, index) => {
+
+item.querySelector(".faq-question").addEventListener("click", () => {
+
+if(index === 0) return; 
+
+faqItems.forEach((faq, i) => {
+
+if(i !== 0){
+faq.classList.remove("active");
+faq.querySelector(".arrow").classList.remove("rotate");
+}
+
+});
+
+item.classList.add("active");
+item.querySelector(".arrow").classList.add("rotate");
+
+});
+
+});
+
+</script>
+
+</body>
