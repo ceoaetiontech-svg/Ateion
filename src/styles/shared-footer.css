@@ -1,0 +1,9 @@
+/* =========================================================
+   Shared Footer
+   ========================================================= */
+
+/* Navbar spacer – use this on pages that have the fixed navbar */
+.shared-navbar-spacer {
+  height: 80px;
+  flex-shrink: 0;
+}

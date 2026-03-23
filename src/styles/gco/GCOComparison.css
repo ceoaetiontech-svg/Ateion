@@ -1,0 +1,178 @@
+.gco-comparison-section {
+  padding: 4rem 5%;
+  background-color: #f7f3eb;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'SF Pro Display', system-ui, -apple-system, sans-serif;
+}
+
+.gco-comparison-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.gco-comparison-title {
+  font-size: clamp(1.5rem, 3.5vw, 2.5rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: #1a1b22;
+  margin-bottom: 0.75rem;
+}
+
+.gco-comparison-subtitle {
+  font-size: clamp(0.9rem, 1.8vw, 1.125rem);
+  color: #64748b;
+  font-weight: 500;
+  margin: 0;
+}
+
+.gco-comparison-container {
+  display: flex;
+  width: 100%;
+  max-width: 1020px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 0;
+}
+
+/* Left Card (Traditional) */
+.gco-card-traditional {
+  flex: 1;
+  padding: 3.75rem 5rem;
+}
+
+.gco-card-traditional .gco-card-title {
+  font-size: clamp(1.25rem, 2.5vw, 1.875rem);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  color: #111827;
+  margin: 0 0 40px 0;
+}
+
+.gco-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.gco-card-traditional .gco-list-item {
+  display: flex;
+  align-items: center;
+  padding: 1.125rem 0;
+  font-size: clamp(0.8rem, 1.3vw, 0.875rem);
+  color: #374151;
+  gap: 1rem;
+  border-bottom: 1px solid #f3f4f6;
+  font-weight: 400;
+}
+
+.gco-card-traditional .gco-list-item:last-child { border-bottom: none; }
+
+.gco-icon-traditional {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  background-color: #111827;
+  color: #ffffff;
+  border-radius: 50%;
+  font-size: 10px;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+/* Right Card (GCO) */
+.gco-card-modern-container {
+  flex: 1;
+  padding: 1.5rem 1.5rem 1.5rem 0;
+  position: relative;
+}
+
+.gco-card-modern {
+  position: relative;
+  height: 100%;
+  padding: 3.125rem 3.75rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.gco-card-modern::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: #241c30;
+  border-radius: 16px;
+  transform: rotate(2deg);
+  z-index: 0;
+  transform-origin: center center;
+}
+
+.gco-card-modern-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.gco-card-modern .gco-card-title {
+  font-size: clamp(1.25rem, 2.5vw, 2rem);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  color: #ffffff;
+  margin: 0 0 1.875rem 0;
+}
+
+.gco-card-modern .gco-list-item {
+  display: flex;
+  align-items: center;
+  padding: 0.875rem 0;
+  font-size: clamp(0.8rem, 1.3vw, 0.875rem);
+  color: #f1f5f9;
+  gap: 1rem;
+  font-weight: 400;
+  border: none;
+}
+
+.gco-icon-modern {
+  width: 12px;
+  height: 12px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.gco-summary {
+  margin-top: auto;
+  padding-top: 3.125rem;
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  color: #cbd5e1;
+  font-weight: 400;
+}
+
+/* ─── Tablet ≤768px ──────────────────────────── */
+@media (max-width: 768px) {
+  .gco-comparison-container {
+    flex-direction: column;
+    background-color: transparent;
+  }
+  .gco-card-traditional {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 2.5rem;
+    margin-bottom: 1.25rem;
+  }
+  .gco-card-modern-container { padding: 1rem; }
+  .gco-card-modern::before { transform: rotate(1deg); }
+  .gco-card-modern { padding: 2.5rem; }
+}
+
+/* ─── Mobile ≤600px ──────────────────────────── */
+@media (max-width: 600px) {
+  .gco-comparison-section { padding: 3rem 5%; }
+  .gco-card-traditional { padding: 1.5rem; }
+  .gco-card-modern { padding: 1.5rem; }
+}

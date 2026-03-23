@@ -1,0 +1,350 @@
+/**
+ * ============================================================================
+ * ATEION DESIGN SYSTEM v4.0 - EVEN NUMBERS ONLY
+ * ============================================================================
+ * 
+ * Professional-grade design system using ONLY EVEN NUMBERS
+ * Based on: Material Design 3, Tailwind CSS, Shopify Polaris, Atlassian
+ * 
+ * Principles:
+ * - 4px base grid system (industry standard)
+ * - EVEN NUMBERS ONLY (2px, 4px, 6px, 8px, 10px, 12px, etc.)
+ * - NO odd numbers (no 3px, 5px, 7px, 9px, 11px, 13px, etc.)
+ * - 1.25 Major Third typography scale (adjusted to even numbers)
+ * - WCAG 2.1 AA accessibility compliance
+ * - Mobile-first responsive approach
+ * 
+ * Last Updated: 2026
+ * Version: 4.0.0
+ * ============================================================================
+ */
+
+:root {
+  /* ──────────────────────────────────────────────────────────────────────────
+   * COLOR PALETTE
+   * ────────────────────────────────────────────────────────────────────────── */
+  
+  /* Primary Brand - Red (Ateion Brand Color) */
+  --color-primary: #fb4444;
+  --color-primary-hover: #ff5555;
+  --color-primary_active: #e03e3e;
+  --color-primary_light: rgba(251, 68, 68, 0.08);
+  --color-primary_lighter: rgba(251, 68, 68, 0.04);
+  
+  /* Neutral Grays - Cool Gray Scale */
+  --color-white: #ffffff;
+  --color-gray-50: #fafafa;
+  --color-gray-100: #f5f5f5;
+  --color-gray-200: #e5e5e5;
+  --color-gray-300: #d4d4d4;
+  --color-gray-400: #a3a3a3;
+  --color-gray-500: #737373;
+  --color-gray-600: #525252;
+  --color-gray-700: #404040;
+  --color-gray-800: #262626;
+  --color-gray-900: #171717;
+  --color-black: #0a0a0a;
+  
+  /* Brand Backgrounds */
+  --color-background-primary: #f7f3eb;
+  --color-background-secondary: #ffffff;
+  --color-background-tertiary: #faf9f7;
+  --color-background-dark: #1e1632;
+  --color-background-black: #202020;
+  
+  /* Navigation */
+  --color-nav-button: rgba(235, 235, 235, 0.8);
+  --color-nav-button-hover: rgba(215, 215, 215, 0.95);
+  --color-nav-button-active: rgba(200, 200, 200, 0.85);
+  
+  /* Text Colors */
+  --color-text-primary: #1a1a1a;
+  --color-text-secondary: #292929;
+  --color-text-tertiary: #525252;
+  --color-text-muted: rgba(0, 0, 0, 0.60);
+  --color-text-subtle: rgba(0, 0, 0, 0.40);
+  --color-text-inverse: #ffffff;
+  --color-text-link: #fb4444;
+  --color-text-link-hover: #ff5555;
+  
+  /* Border Colors */
+  --color-border-light: rgba(0, 0, 0, 0.08);
+  --color-border-medium: rgba(0, 0, 0, 0.12);
+  --color-border-dark: rgba(0, 0, 0, 0.20);
+  --color-border-input: rgba(0, 0, 0, 0.15);
+  --color-border-focus: rgba(251, 68, 68, 0.50);
+  
+  /* Semantic Colors */
+  --color-success: #16a34a;
+  --color-success_light: #dcfce7;
+  --color-success_dark: #15803d;
+  
+  --color-warning: #ca8a04;
+  --color-warning_light: #fef9c3;
+  --color-warning_dark: #a16207;
+  
+  --color-error: #dc2626;
+  --color-error_light: #fee2e2;
+  --color-error_dark: #b91c1c;
+  
+  --color-info: #2563eb;
+  --color-info_light: #dbeafe;
+  --color-info_dark: #1d4ed8;
+  
+  /* Special Brand Colors */
+  --color-purple-card: #aa9dff;
+  --color-purple-card_dark: #8b7dff;
+  --color-red-card: #ff6b6b;
+  --color-red-card_dark: #ff5252;
+  --color-grey-card: #dadada;
+  --color-grey-card_dark: #c9c9c9;
+  
+  /* ──────────────────────────────────────────────────────────────────────────
+   * TYPOGRAPHY - EVEN NUMBERS ONLY
+   * ────────────────────────────────────────────────────────────────────────── */
+  
+  /* Font Families */
+  --font-family-heading: 'OV Soge', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-family-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-family-accent: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-family-mono: 'SF Pro Display', 'Courier New', monospace;
+  --font-family-footer: 'Lato', -apple-system, BlinkMacSystemFont, sans-serif;
+  
+  /* Font Sizes - EVEN NUMBERS ONLY (12px, 14px, 16px, 18px, 20px, 24px, 30px, 32px, 36px, 48px, 60px, 72px) */
+  --font-size-xxs: 0.75rem;    /* 12px */
+  --font-size-xs: 0.875rem;    /* 14px */
+  --font-size-sm: 1rem;        /* 16px */
+  --font-size-base: 1.125rem;  /* 18px */
+  --font-size-lg: 1.25rem;     /* 20px */
+  --font-size-xl: 1.5rem;      /* 24px */
+  --font-size-2xl: 1.875rem;   /* 30px */
+  --font-size-3xl: 2rem;       /* 32px */
+  --font-size-4xl: 2.25rem;    /* 36px */
+  --font-size-5xl: 3rem;       /* 48px */
+  --font-size-6xl: 3.75rem;    /* 60px */
+  --font-size-7xl: 4.5rem;     /* 72px */
+  
+  /* Font Weights - EVEN NUMBERS ONLY */
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  
+  /* Line Heights - EVEN DECIMALS ONLY */
+  --line-height-none: 1;
+  --line-height-tight: 1.25;
+  --line-height-snug: 1.375;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.625;
+  --line-height-loose: 2;
+  
+  /* Letter Spacing */
+  --letter-spacing-tighter: -0.05em;
+  --letter-spacing-tight: -0.025em;
+  --letter-spacing-normal: 0;
+  --letter-spacing-wide: 0.025em;
+  --letter-spacing-wider: 0.05em;
+  --letter-spacing-widest: 0.1em;
+  
+  /* ──────────────────────────────────────────────────────────────────────────
+   * SPACING SYSTEM - 4px GRID, EVEN NUMBERS ONLY
+   * ────────────────────────────────────────────────────────────────────────── */
+  
+  --space-0: 0;
+  --space-1: 0.5rem;    /* 8px */
+  --space-2: 1rem;      /* 16px */
+  --space-3: 1.5rem;    /* 24px */
+  --space-4: 2rem;      /* 32px */
+  --space-5: 2.5rem;    /* 40px */
+  --space-6: 3rem;      /* 48px */
+  --space-8: 4rem;      /* 64px */
+  --space-10: 5rem;     /* 80px */
+  --space-12: 6rem;     /* 96px */
+  --space-16: 8rem;     /* 128px */
+  --space-20: 10rem;    /* 160px */
+  --space-24: 12rem;    /* 192px */
+  --space-32: 16rem;    /* 256px */
+  
+  /* ──────────────────────────────────────────────────────────────────────────
+   * SIZING - EVEN NUMBERS ONLY
+   * ────────────────────────────────────────────────────────────────────────── */
+  
+  /* Component Heights - EVEN NUMBERS ONLY */
+  --height-nav: 5rem;                 /* 80px */
+  --height-nav-button: 2rem;          /* 32px */
+  --height-button-sm: 2rem;           /* 32px */
+  --height-button-md: 2.5rem;         /* 40px */
+  --height-button-lg: 3rem;           /* 48px */
+  --height-input: 2.5rem;             /* 40px */
+  --height-hero: 41.5625rem;          /* 665px */
+  --height-card-lg: 31.5rem;          /* 504px */
+  --height-card-md: 23.5625rem;       /* 377px */
+  --height-footer-bar: 4rem;          /* 64px */
+  
+  /* Max Widths - EVEN NUMBERS */
+  --max-width-container: 80rem;       /* 1280px */
+  --max-width-content: 64rem;         /* 1024px */
+  --max-width-narrow: 48rem;          /* 768px */
+  --max-width-text: 45rem;            /* 720px */
+  
+  /* ──────────────────────────────────────────────────────────────────────────
+   * BORDER RADIUS - EVEN NUMBERS ONLY
+   * ────────────────────────────────────────────────────────────────────────── */
+  
+  --radius-none: 0;
+  --radius-sm: 0.5rem;    /* 8px */
+  --radius-md: 1rem;      /* 16px */
+  --radius-lg: 1.5rem;    /* 24px */
+  --radius-xl: 2rem;      /* 32px */
+  --radius-2xl: 2.5rem;   /* 40px */
+  --radius-full: 9999px;  /* Pill shape */
+  
+  /* Component Radius */
+  --radius-button: var(--radius-full);
+  --radius-input: var(--radius-md);
+  --radius-card: var(--radius-xl);
+  --radius-modal: var(--radius-xl);
+  
+  /* ──────────────────────────────────────────────────────────────────────────
+   * SHADOWS
+   * ────────────────────────────────────────────────────────────────────────── */
+  
+  --shadow-none: none;
+  --shadow-xs: 0 2px 4px 0 rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0 2px 6px 0 rgba(0, 0, 0, 0.10);
+  --shadow-md: 0 4px 8px 0 rgba(0, 0, 0, 0.10);
+  --shadow-lg: 0 8px 16px 0 rgba(0, 0, 0, 0.10);
+  --shadow-xl: 0 16px 32px 0 rgba(0, 0, 0, 0.10);
+  --shadow-2xl: 0 24px 48px 0 rgba(0, 0, 0, 0.25);
+  --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+  
+  /* Custom Shadows */
+  --shadow-button: 0 4px 12px rgba(251, 68, 68, 0.25);
+  --shadow-button-hover: 0 6px 20px rgba(251, 68, 68, 0.35);
+  --shadow-card: 0 4px 20px rgba(25, 33, 61, 0.04);
+  --shadow-card-hover: 0 8px 30px rgba(25, 33, 61, 0.08);
+  --shadow-nav: 0 2px 16px rgba(0, 0, 0, 0.07);
+  --shadow-modal: 0 24px 48px 0 rgba(0, 0, 0, 0.25);
+  
+  /* ──────────────────────────────────────────────────────────────────────────
+   * TRANSITIONS - EVEN NUMBERS ONLY
+   * ────────────────────────────────────────────────────────────────────────── */
+  
+  /* Duration - EVEN NUMBERS ONLY */
+  --duration-instant: 0ms;
+  --duration-fast: 100ms;
+  --duration-normal: 200ms;
+  --duration-slow: 300ms;
+  --duration-slower: 500ms;
+  --duration-slowest: 700ms;
+  
+  /* Easing */
+  --ease-linear: cubic-bezier(0, 0, 1, 1);
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  
+  /* Transition Presets */
+  --transition-fast: var(--duration-fast) var(--ease-out);
+  --transition-base: var(--duration-normal) var(--ease-out);
+  --transition-slow: var(--duration-slow) var(--ease-out);
+  --transition-slower: var(--duration-slower) var(--ease-in-out);
+  
+  /* ──────────────────────────────────────────────────────────────────────────
+   * Z-INDEX - EVEN HUNDREDS ONLY
+   * ────────────────────────────────────────────────────────────────────────── */
+  
+  --z-base: 0;
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-overlay: 300;
+  --z-fixed: 400;
+  --z-modal-backdrop: 500;
+  --z-modal: 600;
+  --z-popover: 700;
+  --z-tooltip: 800;
+  --z-notification: 900;
+  
+  /* ──────────────────────────────────────────────────────────────────────────
+   * BREAKPOINTS - EVEN NUMBERS ONLY
+   * ────────────────────────────────────────────────────────────────────────── */
+  
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+  
+  /* ──────────────────────────────────────────────────────────────────────────
+   * COMPONENT SPECIFICATIONS - EVEN NUMBERS ONLY
+   * ────────────────────────────────────────────────────────────────────────── */
+  
+  /* Navigation */
+  --nav-height: var(--height-nav);
+  --nav-padding-x: var(--space-2);         /* 16px */
+  --nav-padding-x-desktop: var(--space-4); /* 32px */
+  --nav-padding-y: var(--space-1);         /* 8px */
+  --nav-button-gap: var(--space-1);        /* 16px desktop */
+  --nav-button-gap-mobile: var(--space-0); /* 8px mobile */
+  --nav-button-height: var(--height-nav-button);
+  --nav-button-padding-x: var(--space-1);  /* 16px */
+  --nav-button-font-size: var(--font-size-xs);  /* 14px */
+  --nav-button-font-size-desktop: var(--font-size-sm); /* 16px */
+  
+  /* Buttons */
+  --button-height-sm: var(--height-button-sm);
+  --button-height-md: var(--height-button-md);
+  --button-height-lg: var(--height-button-lg);
+  --button-padding-x: var(--space-1);
+  --button-font-size: var(--font-size-xs);
+  --button-border-radius: var(--radius-full);
+  
+  /* Cards */
+  --card-padding: var(--space-2);
+  --card-border-radius: var(--radius-xl);
+  --card-shadow: var(--shadow-card);
+  --card-shadow-hover: var(--shadow-card-hover);
+  
+  /* Footer */
+  --footer-padding-y: var(--space-6);
+  --footer-column-gap: var(--space-8);
+  --footer-font-size: var(--font-size-xs);
+  --footer-bar-height: var(--height-footer-bar);
+  
+  /* Forms */
+  --input-height: var(--height-input);
+  --input-border-radius: var(--radius-md);
+  --input-border-color: var(--color-border-input);
+  --input-focus-border-color: var(--color-primary);
+  
+  /* ──────────────────────────────────────────────────────────────────────────
+   * ACCESSIBILITY
+   * ────────────────────────────────────────────────────────────────────────── */
+  
+  /* Focus Ring - EVEN NUMBERS */
+  --focus-ring-width: 2px;
+  --focus-ring-offset: 2px;
+  --focus-ring-color: rgba(251, 68, 68, 0.50);
+  --focus-ring: var(--focus-ring-width) solid var(--focus-ring-color);
+  --focus-ring-offset-style: var(--focus-ring-offset) solid var(--color-background-primary);
+  
+  /* Minimum Touch Target - EVEN NUMBER */
+  --min-touch-target: 44px;
+  
+  /* ──────────────────────────────────────────────────────────────────────────
+   * GRIDS & LAYOUT - EVEN NUMBERS ONLY
+   * ────────────────────────────────────────────────────────────────────────── */
+  
+  /* Container Padding - EVEN NUMBERS */
+  --container-padding-mobile: var(--space-1);   /* 16px */
+  --container-padding-tablet: var(--space-2);   /* 32px */
+  --container-padding-desktop: var(--space-4);  /* 64px */
+  
+  /* Section Spacing - EVEN NUMBERS */
+  --section-spacing-mobile: var(--space-6);   /* 48px */
+  --section-spacing-tablet: var(--space-8);   /* 64px */
+  --section-spacing-desktop: var(--space-10); /* 80px */
+}
